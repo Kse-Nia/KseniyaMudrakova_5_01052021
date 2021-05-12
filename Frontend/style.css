@@ -147,4 +147,15 @@ ul li:hover ul li a {
     top: 25px;
   }
 }
+
+.main {
+  width: 100%;
+  height: auto;
+  margin-top: 5%;
+  background-color: #9590A8;
+}
+
+.descript {
+  text-align: center;
+}
 /*# sourceMappingURL=style.css.map */
