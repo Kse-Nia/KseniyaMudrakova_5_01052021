@@ -20,8 +20,15 @@ fetch("http://localhost:3000/api/cameras")
     description.textContent = data[0].description;
     docHtml.appendChild(description);
 
+<<<<<<< HEAD
     console.log(data[0].imageUrl);
     const picture = document.createElement("img");
     picture.innerHTML = `<img src="http://localhost:3000/images/vcam_1.jpg"/>`;
     docHtml.appendChild(picture);
+=======
+    const img = new Image(); 
+    img.src = "http://localhost:3000/images/vcam_1.jpg";
+    img.alt = "alt";
+    document.body.appendChild(img);
+>>>>>>> test
   });

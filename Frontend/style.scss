@@ -103,7 +103,17 @@ ul {
     font-size: 2em;
 }
 
+<<<<<<< HEAD
 //footer 
+=======
+
+section {
+    margin-top: 10%;
+}
+
+
+// Footer
+>>>>>>> test
 
 .footer {
     width: 100%;
@@ -113,12 +123,23 @@ ul {
     flex-direction: column;
     justify-content: center;
 
+<<<<<<< HEAD
     &__link {
         padding-left: 5%;
         text-decoration: none;
         color: white;
         line-height: 2em;
     }
+=======
+    &__url {
+        padding-left: 5%;
+        text-decoration: none;
+        color: white;
+        line-height: 3em;
+        font-size: 1.2em;
+    }
+
+>>>>>>> test
 }
 
 // Keyframes
