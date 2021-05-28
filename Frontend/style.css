@@ -118,13 +118,6 @@ ul li:hover ul li a {
   font-size: 2em;
 }
 
-<<<<<<< HEAD
-=======
-section {
-  margin-top: 10%;
-}
-
->>>>>>> test
 .footer {
   width: 100%;
   height: 20vh;
@@ -141,20 +134,12 @@ section {
           justify-content: center;
 }
 
-<<<<<<< HEAD
-.footer__link {
-  padding-left: 5%;
-  text-decoration: none;
-  color: white;
-  line-height: 2em;
-=======
 .footer__url {
   padding-left: 5%;
   text-decoration: none;
   color: white;
   line-height: 3em;
   font-size: 1.2em;
->>>>>>> test
 }
 
 @-webkit-keyframes slide-in {
