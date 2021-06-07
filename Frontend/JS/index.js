@@ -1,4 +1,4 @@
-const docHtml = document.getElementById("main");
+const docHtml = document.getElementById("container");
 fetch("http://localhost:3000/api/cameras")
   .then((response) => response.json())
   .then((data) => {
@@ -20,5 +20,8 @@ fetch("http://localhost:3000/api/cameras")
       img.width = "300";
       img.setAttribute("alt", data[i].name);
       docHtml.appendChild(img);
+
     }
   });
+
+  
