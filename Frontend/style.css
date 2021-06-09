@@ -1,12 +1,13 @@
 * {
   padding: 0;
   margin: 0;
+  text-decoration: none;
 }
 
 body {
   width: 100%;
   height: 100vh;
-  font-family: 'Lora';
+  font-family: 'Roboto';
   
 }
 
@@ -132,6 +133,37 @@ ul li:hover ul li a {
       flex-wrap: wrap;
 }
 
+#container{
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+justify-content: space-between;
+}
+
+.article{
+  width: 35%; 
+  min-height: 30%;
+  background-color: #9590A8;
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+}
+
+
+
+.image{
+  display: block;
+  width: 40%;
+  height: auto;
+  margin: 0 auto 0;
+  object-fit: cover;
+}
+
+.info{
+  width: 90%;
+  margin: 1% auto 1%;
+}
 .footer {
   width: 100%;
   height: 20vh;
@@ -175,12 +207,6 @@ h1{
   }
 }
 
-#container{
-  /* 
-  display: flex;
-  flex-direction: row;
-  */
-}
 
 @keyframes slide-in {
   0% {
@@ -206,5 +232,7 @@ h1{
 
 .descript {
   text-align: center;
+  font-family: 'Lora', serif;
+  font-size: 2em;
 }
 /*# sourceMappingURL=style.css.map */
