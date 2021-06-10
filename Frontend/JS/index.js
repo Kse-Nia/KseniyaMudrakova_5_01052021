@@ -32,6 +32,7 @@ fetch("http://localhost:3000/api/cameras")
       <p class="prix">${data[i].price} €</p>
       </a>
   </div>
+  </div>
       `;
     }
   });

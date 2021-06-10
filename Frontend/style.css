@@ -11,14 +11,18 @@ body {
   font-family: 'Roboto';
 }
 
-h1 {
+h1, h2{
   font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-family: 'Lora', serif;
+  font-size: 2em;
 }
+
 
 .main {
   width: 100%;
   height: 100%;
-  margin-top: 5%;
+  margin: 5% 1% 5%;
   background-color: #9590A8;
 }
 
@@ -151,11 +155,18 @@ ul li:hover ul li a {
 #container {
   display: grid;
   justify-content: center;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 4rem;
   padding: 4rem;
   margin: 0 auto;
   width: max-content;
+}
+
+@media (max-width: 800px) {
+  #container{
+    display: flex;
+    flex-direction: column;  
+  }
 }
 
 .article {
@@ -164,21 +175,34 @@ ul li:hover ul li a {
   padding: 3% 0 1%;
   font-size: 1em;
   border-radius: 1em;
-  background-color: #9590A8;
+  background-color: #80618F;
   display: flex;
   align-items: center;
   text-align: center;
+  overflow: hidden;
+  animation-fill-mode: both;
+  transition: all;
+}
+
+.article:hover {
+  box-shadow: 3px 9px 23px 3px rgba(176, 169, 169, 0.75);
+  -webkit-box-shadow: 3px 9px 23px 3px rgba(176, 169, 169, 0.75);
+  -moz-box-shadow: 3px 9px 23px 3px rgba(176, 169, 169, 0.75);
+  animation: show .2s ease-in both;
 }
 
 
-
-h3[name] {
+ h3[name] {
   font-family: "Lato";
+  font-size: 1.4em;
 }
 
 a {
   color: white;
   height: 100%;
+}
+a:hover{
+  color: white;
 }
 
 .image {
@@ -264,10 +288,12 @@ a {
   }
 }
 
+@keyframes show{
+0%{
+transform: scale(1);
+}
 
-
-.descript {
-  text-align: center;
-  font-family: 'Lora', serif;
-  font-size: 2em;
+100%{
+  transform: scale(1.05);
+}
 }
