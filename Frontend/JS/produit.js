@@ -18,17 +18,13 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
        <p class="info">${data.description}</p>
         <p class="prix">${data.price} €</p>
         </div>
-
         <label for="pet-select">Choisir votre lentille</label>
-
-<select name="pets" id="lense-select">
-    <option value="lense" id="lensechoice">${data.lenses}</option>
-</select>
-
+        <select name="pets" id="lense-select">
+            <option value="lense" id="lensechoice">${data.lenses}</option>
+        </select>
        </a>
       </div>
       `;
   });
-
 
 // http://127.0.0.1:5501/Frontend/produit.html?id=12345
