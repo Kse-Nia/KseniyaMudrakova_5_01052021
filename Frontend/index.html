@@ -10,35 +10,33 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Lora&family=Roboto&display=swap"
-        rel="stylesheet">
     <meta name="title" content="Accueil - Orinoco">
-    <meta name="description" content="Orinoco est un site e-commerce.">
-
+    <meta name="description" content="Orinoco site d'achat en ligne d'appareils photos vintage" />
     <title>Orinoco</title>
 </head>
 
+
 <body>
     <header class="header">
-        <img class="header-logo" src="./img/logo.png" alt="logo du site représentant un caddy" class="logo">
-        <nav>
-            <ul>
-                <li><a href="./index.html">Accueil</a></li>
-                <li><a href="./commande.html">Commande</a></li>
-                <li>
-                    <a href="./panier.html">Panier</a>
-                    <ul>
-                    </ul>
+        <img class="header-logo " src="./img/logo.png" alt="logo du site représentant un caddy" class="logo">
+        <!--Navbar-->
+        <nav class="navbar justify-content-center">
+            <a href="./index.html" class="nav-link text-light fs-4">Accueil</a>
+            <a href="./commande.html" class="nav-link text-light fs-4">Commande</a>
+            <a href="./panier.html" class="nav-link text-light fs-4">Panier</a>
         </nav>
     </header>
+
     <main id="main">
         <h1> Boutique d'appareils photos vintage</h1>
         <h2>Les articles du jour</h2>
-        <section id="container">
+        <section id="container" class="container-sm-ld-lg d-sm-flex mt-2 px-4 overflow-hidden">
         </section>
     </main>
-
+<footer class="footer">
+    <p>Conditions générales de vente</p>
+    <p>Contact</p>
+</footer>
     <script src="JS/index.js"></script>
 </body>
 

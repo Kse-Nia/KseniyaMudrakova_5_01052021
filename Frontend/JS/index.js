@@ -24,14 +24,17 @@ fetch("http://localhost:3000/api/cameras")
 */
 
       docHtml.innerHTML += `
-      <div class="article">
-        <a href="produit.html?id=${data[i]._id}" />
-       <h3 class="name">${data[i].name}</h3>
-       <img src=${data[i].imageUrl} alt="" class="image">
-       <p class="info">${data[i].description}</p>
-        <p class="prix">${data[i].price} €</p>
-       </a>
+      <div class="card d-flex style="width: 18rem;">
+      <a href="produit.html?id=${data[i]._id}" />
+      <img src=${data[i].imageUrl} class="card-img-top img-thumbnail" alt="présentation de l'appareil photo">
+      <div class="card-body text-center">
+        <h3 class="card-title">${data[i].name}</h3>
+        <p class="card-text text-dark">${data[i].description}</p>
+        <p class="card-text text-dark">${data[i].price} € </p>
       </div>
+      </a>
+    </div>
+
       `;
     }
   });
