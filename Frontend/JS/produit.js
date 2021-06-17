@@ -2,7 +2,7 @@ let params = new URL(document.location).searchParams;
 let id = params.get("id");
 
 let docHtml = document.getElementsByClassName("produitContent");
-let selecChoice = document.getElementsByClassName("select-box");
+let selecChoice = document.getElementById("lense");
 
 fetch(`http://localhost:3000/api/cameras/${id}`)
   .then((response) => response.json())
@@ -10,23 +10,34 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
     console.log(data);
 
     docHtml[0].innerHTML += `
-      <div class=" container article2">
-      <div class="card d-flex text-center" style="width: 30rem;">
-        <a href="produit.html?id=${data._id}" />
-        <h3 class="card-title">${data.name}</h3>
-       <div class="information">
-       <img src=${data.imageUrl} class="card-img-top img-thumbnail mx-auto" alt="présentation de l'appareil photo">
-       <div class="card-body  ">
-       <p class="info">${data.description}</p>
-        <p class="price">${data.price} €</p>
-        </div>
-        <div class="select-box">
-        <option value = "lense"></option>
-        <input class="btn btn-primary" type="submit" value="Valider">
-        </div>
-       </a>
+    <div class="card  text-dark" style="background-color:#f0f1ff;">
+    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+    <a href="produit.html?id=${data._id}" />
+    <img src=${data.imageUrl} class="card-img-top img-thumbnail " alt="présentation de l'appareil photo">
+    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+    <div class="card-body text-center">
+      <h3 class="card-title">${data.name}</h3>
+      <p class="card-text text-dark">${data.description}</p>
+      <p class="card-text text-dark fw-bolder">${data.price} € </p>
+      <div class="select-box">
+      <select name="selection" id="lense">
+  
+      <input class="btn btn-primary" type="submit" value="Valider">
+      </select>
       </div>
-        `; 
-          })
-// http://127.0.0.1:5501/Frontend/produit.html?id=12345
+    </div>
+    </a>
+    </div>
+  </div>
+        `;
 
+    this.lenses = data.lenses;
+    for (let i = 0; i < lenses.lenght; i++) {
+      selecChoice[i].innerHTML += `
+            <option value = "lense">${data[i].lenses}</option>
+            <option value = "lense">${data[i].lenses}</option>
+         
+            `;
+    }
+  });
+// http://127.0.0.1:5501/Frontend/produit.html?id=12345
