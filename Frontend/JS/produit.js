@@ -22,21 +22,21 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
       <div class="select-box">
       <select name="selection" id="lense">
   
-      <input class="btn btn-primary" type="submit" value="Valider">
-      </select>
-      </div>
-    </div>
-    </a>
-    </div>
-  </div>
+    
         `;
 
     this.lenses = data.lenses;
     for (let i = 0; i < lenses.lenght; i++) {
-      selecChoice[i].innerHTML += `
+      docHtml[0].innerHTML += `
             <option value = "lense">${data[i].lenses}</option>
             <option value = "lense">${data[i].lenses}</option>
-         
+            <input class="btn btn-primary" type="submit" value="Valider">
+            </select>
+            </div>
+          </div>
+          </a>
+          </div>
+        </div>
             `;
     }
   });
