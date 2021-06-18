@@ -1,9 +1,10 @@
 // Variable ajout produit
 
-let cartStorage = JSON.parse(localStorage.getItem("produit"));
+fetch(`http://localhost:3000/api/cameras/${id}`)
+  .then((response) => response.json())
+  .then((data) => {
 
-if (cartStorage == null){
-    cartStorage = [];
-    cartStorage.push(cart)
-    localStorage.setItem("produit", JSON.stringify(cartStorage))
-}
+localStorage.infos = JSON.stringify()
+
+    localStorage.setItem('');
+  }

@@ -12,7 +12,6 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
     docHtml[0].innerHTML += `
     <div class="card  text-dark" style="background-color:#f0f1ff;">
     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-    <a href="produit.html?id=${data._id}" />
     <img src=${
       data.imageUrl
     } class="card-img-top img-thumbnail " alt="présentation de l'appareil photo">
@@ -26,24 +25,35 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
       ${data.lenses.map(
         (lense) => `<option value=${lense} id=${data.id}>${lense}</option>`
       )}
-
-      <input class="btn btn-primary mt-3" type="submit" value="Valider">
+      <input id="addToCart" class="btn btn-primary mt-3" type="submit" value="Ajouter au panier">
       </select>
       </div>
     </div>
-    </a>
     </div>
-  </div>
-        `;
-  
-  });
+  </div>`;
 
-// http://127.0.0.1:5501/Frontend/produit.html?id=12345
-/*
-this.lenses = data.lenses;
-    for (let i = 0; i < lenses.lenght; i++) {
-      selecChoice.innerHTML += `
-            <option value = "lense">${data[i].lenses}</option>
-            <option value = "lense">${data[i].lenses}</option>
-            `;
-    */
+document.getElementById("addToCart").addEventListener("click", () => {
+  console.log("hello");
+  event.preventDefault();
+  let recup = localStorage.getItem("camera");
+  console.log(recup);
+
+  if (recup === null){
+    let cart = [];
+    cart.push(data.name);
+    localStorage.setItem("camera", JSON.stringify(cart));
+  } else {
+    let cart = JSON.parse(recup);
+    cart.push(data.name);
+    localStorage.setItem("camera", JSON.stringify(cart));
+  }
+
+
+  //    Cart.addProduct(product)
+  // redirectCart(product.name)
+});
+function redirectCart(productName) {
+  window.location.href = `${window.location.origin}/cart.html?lastAddedProductName=${productName}`;
+}
+
+});
