@@ -32,28 +32,27 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
     </div>
   </div>`;
 
-document.getElementById("addToCart").addEventListener("click", () => {
-  console.log("hello");
-  event.preventDefault();
-  let recup = localStorage.getItem("camera");
-  console.log(recup);
+// gestion du panier et localStorage
 
-  if (recup === null){
-    let cart = [];
-    cart.push(data.name);
-    localStorage.setItem("camera", JSON.stringify(cart));
-  } else {
-    let cart = JSON.parse(recup);
-    cart.push(data.name);
-    localStorage.setItem("camera", JSON.stringify(cart));
-  }
+    document.getElementById("addToCart").addEventListener("click", () => {
+      console.log("hello");
+      event.preventDefault();
+      let recup = localStorage.getItem("camera");
+      console.log(recup);
 
+      if (recup === null) {
+        let cart = [];
+        cart.push(data.name);
+        localStorage.setItem("camera", JSON.stringify(cart));
+      } else {
+        let cart = JSON.parse(recup);
+        cart.push(data.name);
+        localStorage.setItem("camera", JSON.stringify(cart));
+      }
 
-  //    Cart.addProduct(product)
-  // redirectCart(product.name)
-});
-function redirectCart(productName) {
-  window.location.href = `${window.location.origin}/cart.html?lastAddedProductName=${productName}`;
-}
+    });
 
-});
+    function redirectCart(productName) {
+      window.location.href = `${window.location.origin}/cart.html?lastAddedProductName=${productName}`;
+    }
+  });
