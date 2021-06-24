@@ -6,4 +6,4 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
   .then((response) => response.json())
   .then((data) =>{
 
-  }
+    document.getElementById("addToCart")   }
