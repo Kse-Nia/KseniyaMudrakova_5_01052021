@@ -36,8 +36,19 @@ h2 {
 }
 
 /* --- main   --- */
+table,
+td {
+  border: 0.5px solid #cccccc;
+}
+
+thead,
+tfoot {
+  background-color: #bcaaec;
+  color: #222222;
+}
+
 .secondBack {
-  background-color: #CCAFDD;
+  background-color: #A69CAC;
   width: 90%;
   height: auto;
   margin: auto;
@@ -51,7 +62,46 @@ h2 {
   width: 400px;
 }
 
+.button {
+  width: 20%;
+  position: relative;
+  display: inline-block;
+  padding: 1% 3% 1%;
+  text-transform: uppercase;
+  border: 3px solid transparent;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9em;
+  background-color: #6F1E9D;
+  cursor: pointer;
+  color: #fff;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  border-radius: 10px;
+  border: 3px solid black;
+  -webkit-transition: all 0.7s linear;
+  transition: all 0.7s linear;
+}
+
+.button:hover {
+  background-color: white;
+  color: #6F1E9D;
+  border: 3px solid #6F1E9D;
+  -webkit-animation-delay: 0.5ms;
+          animation-delay: 0.5ms;
+}
+
 .footer {
   background-color: #6F1E9D;
+  margin-top: 5%;
 }
 /*# sourceMappingURL=style.css.map */
