@@ -36,25 +36,20 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
 
     document.getElementById("addToCart").addEventListener("click", () => {
       event.preventDefault();
-      let recup = localStorage.getItem("camera");
-      console.log(recup);
 
-      if (recup === null) {
-        alert("Le panier est vide");
-        
-        let cart = [];
-        cart.push(data.name);
-        localStorage.setItem("camera", JSON.stringify(cart));
-      } else {
-        let cart = JSON.parse(recup);
-        cart.push(data.name.lense.price);
-        localStorage.setItem("camera", JSON.stringify(cart));
+      let produitStorage = JSON.parse(localStorage.getItem("camera"));
+      console.log(produitStorage);
+
+      // S'il y a déjà des produits dans le panier
+      if (produitStorage) {
       }
-      console.log(cart);
+
+      // Pas de produit
+      else {
+      }
     });
 
     function redirectCart(productName) {
       window.location.href = `${window.location.origin}/cart.html?lastAddedProductName=${productName}`;
     }
   });
-

@@ -5,10 +5,8 @@ let total = 0;
 
 // Recupération des produits du localStorage
 
-const totalCart = document.getElementsByClassName("total");
-const quantity = document.getElementsByClassName("quantity");
-const table = document.getElementsByClassName("table");
-console.log(localStorage);
+let optionProduit = {
+  
 
 const camera = localStorage.getItem("camera");
 
