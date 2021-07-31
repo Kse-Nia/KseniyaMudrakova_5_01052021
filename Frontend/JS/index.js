@@ -6,7 +6,7 @@ fetch("http://localhost:3000/api/cameras")
   .then((response) => response.json())
   .then((data) => {
     for (let i = 0; i < data.length; i++) {
-      
+      console.log(data);
       docHtml.innerHTML += `
       <div class="card  text-dark" style="background-color:#f0f1ff;">
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
