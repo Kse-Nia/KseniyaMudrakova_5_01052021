@@ -35,7 +35,6 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
 
     document.getElementById("addToCart").addEventListener("click", () => {
       event.preventDefault();
-<<<<<<< HEAD
       let recup = localStorage.getItem("camera");
       //let allProducts = JSON.stringify(localStorage.getItem("camera"));
 
@@ -47,22 +46,9 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
         let cart = JSON.parse(recup);
         cart.push(data.name);
         localStorage.setItem("camera", JSON.stringify(cart));
-=======
-
-      let produitStorage = JSON.parse(localStorage.getItem("camera"));
-      console.log(produitStorage);
-
-      // S'il y a déjà des produits dans le panier
-      if (produitStorage) {
-      }
-
-      // Pas de produit
-      else {
->>>>>>> local
       }
     });
     function redirectCart(productName) {
       window.location.href = `${window.location.origin}/cart.html?lastAddedProductName=${productName}`;
     }
-    console.log(recup);
   });

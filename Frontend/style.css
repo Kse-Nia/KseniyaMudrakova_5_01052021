@@ -62,7 +62,9 @@ h2 {
   margin: 10% auto 10%;
 }
 
-tr, td, th {
+tr,
+td,
+th {
   border: 1px dashed #424242;
 }
 
@@ -70,5 +72,17 @@ th {
   text-align: center;
   background-color: #6F1E9D;
   color: white;
+}
+
+.btn {
+  background-color: #6F1E9D;
+  border: 2px solid #6F1E9D;
+  color: white;
+}
+
+.btn:hover {
+  background-color: white;
+  color: #6F1E9D;
+  border: 2px solid #6F1E9D;
 }
 /*# sourceMappingURL=style.css.map */
