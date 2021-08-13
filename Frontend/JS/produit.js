@@ -6,21 +6,10 @@ let selecChoice = document.getElementById("lense");
 
 fetch(`http://localhost:3000/api/cameras/${id}`)
   .then((response) => response.json())
-
-  // Message d'erreur si le server ne se lance pas
-  .catch((error) => {
-    docHtml.innerHTML =
-      "Nous n'avons pas réussi à afficher nos nounours.";
-    container.style.textAlign = "center";
-    container.style.padding = "45vh 0";
-  })
-
   //
   .then((data) => {
     console.log(data);
 
-    article = data;
-   // quantity = 
     docHtml.innerHTML += `
     <div class="card  text-dark" style="background-color:#f0f1ff;">
     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
@@ -45,10 +34,9 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
   </div>`;
 
     document.getElementById("addToCart").addEventListener("click", () => {
-      console.log("hello");
       event.preventDefault();
       let recup = localStorage.getItem("camera");
-      console.log(recup);
+      //let allProducts = JSON.stringify(localStorage.getItem("camera"));
 
       if (recup === null) {
         let cart = [];
@@ -63,4 +51,6 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
     function redirectCart(productName) {
       window.location.href = `${window.location.origin}/cart.html?lastAddedProductName=${productName}`;
     }
+    console.log(recup);
   });
+

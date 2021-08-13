@@ -4,6 +4,14 @@ const docHtml = document.getElementById("container");
 
 fetch("http://localhost:3000/api/cameras")
   .then((response) => response.json())
+
+  // Message d'erreur si les articles ne s'affichent pas / le server n'est pas lancé
+  .catch((error) => {
+    docHtml.innerHTML = "Erreur 404 - aucun article à afficher";
+    docHtml.style.textAlign = "center";
+    docHtml.style.padding = "20vh";
+  })
+
   .then((data) => {
     for (let i = 0; i < data.length; i++) {
       console.log(data);
