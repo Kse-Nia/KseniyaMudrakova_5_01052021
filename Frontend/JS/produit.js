@@ -1,15 +1,16 @@
 let params = new URL(document.location).searchParams;
 let id = params.get("id");
 
-let docHtml = document.getElementsByClassName("produitContent");
+let docHtml = document.getElementById("produitContent");
 let selecChoice = document.getElementById("lense");
 
 fetch(`http://localhost:3000/api/cameras/${id}`)
   .then((response) => response.json())
+  //
   .then((data) => {
     console.log(data);
 
-    docHtml[0].innerHTML += `
+    docHtml.innerHTML += `
     <div class="card  text-dark" style="background-color:#f0f1ff;">
     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
     <img src=${
@@ -32,13 +33,10 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
     </div>
   </div>`;
 
-// gestion du panier et localStorage
-
     document.getElementById("addToCart").addEventListener("click", () => {
-      console.log("hello");
       event.preventDefault();
       let recup = localStorage.getItem("camera");
-      console.log(recup);
+      //let allProducts = JSON.stringify(localStorage.getItem("camera"));
 
       if (recup === null) {
         let cart = [];
@@ -46,12 +44,20 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
         localStorage.setItem("camera", JSON.stringify(cart));
       } else {
         let cart = JSON.parse(recup);
-        cart.push(data.name);
+        
+        // Injection info sur le produit
+        cart.push({
+          id: data.id,
+          name: data.name,
+          price: data.price,
+          quantity: recup.quantity+=1,
+          subTotal: recup.price*1
+        })
         localStorage.setItem("camera", JSON.stringify(cart));
       }
 
+      console.log(recup);
     });
-
     function redirectCart(productName) {
       window.location.href = `${window.location.origin}/cart.html?lastAddedProductName=${productName}`;
     }

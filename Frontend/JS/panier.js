@@ -1,9 +1,39 @@
 // Variable ajout produit
 
-const docHtml = document.getElementsByClassName("container");¿
+let recup = JSON.parse(localStorage.getItem("camera"));
+let total = 0;
+//<<<<<<< HEAD
+let affichagePanier = document.getElementById('table');
 
-fetch(`http://localhost:3000/api/cameras/${id}`)
-  .then((response) => response.json())
-  .then((data) =>{
+// Ajout code HTML Panier
+affichagePanier.innerHTML += `
+<tr>
+    <th>Produit</th>
+    <th>Quantité</th>
+    <th>Prix</th>
+    <th>Total</th>
+</tr>`;
 
-    document.getElementById("addToCart")   }
+let resultTotal = 0;
+let priceP = 1;
+
+
+for (let i = 0; i < recup.length; i++){
+    affichagePanier.innerHTML += `
+    <tr>
+        <td>${recup[i]}</td>
+        <td>1</td>
+        <td>€</td>
+        <td></td>
+    </tr>
+    `;
+
+    resultTotal = resultTotal + priceP;
+}
+console.log(resultTotal);
+
+// Recupération des produits du localStorage
+const camera = localStorage.getItem("camera");
+
+// Ajout des produits
+//

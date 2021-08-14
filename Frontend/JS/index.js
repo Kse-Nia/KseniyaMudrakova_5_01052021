@@ -4,9 +4,22 @@ const docHtml = document.getElementById("container");
 
 fetch("http://localhost:3000/api/cameras")
   .then((response) => response.json())
+
+  // Message d'erreur si les articles ne s'affichent pas / le server n'est pas lancé
+  .catch((error) => {
+    docHtml.innerHTML = "Erreur 404 - aucun article à afficher";
+    docHtml.style.textAlign = "center";
+    docHtml.style.padding = "20vh";
+  })
+
   .then((data) => {
+
+     // Formatage du prix pour l'afficher en euros
+     data.price = data.price / 100;
+
+
     for (let i = 0; i < data.length; i++) {
-      
+      console.log(data);
       docHtml.innerHTML += `
       <div class="card  text-dark" style="background-color:#f0f1ff;">
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">

@@ -1,4 +1,3 @@
-
 * a {
     padding: 0;
     margin: 0;
@@ -27,7 +26,7 @@ h2 {
 
 #main {
     width: 100%;
-    height: 100%;
+    height: auto;
     padding: 5% 1% 5%;
 }
 
@@ -40,7 +39,7 @@ h2 {
 
 
 /* --- main   --- */
-.secondBack{
+.secondBack {
     background-color: #CCAFDD;
     width: 90%;
     height: auto;
@@ -51,11 +50,44 @@ h2 {
     font-family: "Lato";
 }
 
-.card{
+.card {
     width: 400px;
 }
 
 .footer {
     background-color: #6F1E9D;
     ;
+}
+
+/* --- Page panier   --- */
+
+#table {
+    width: 90%;
+    height: auto;
+    margin: 10% auto 10%;
+}
+
+
+tr,
+td,
+th {
+    border: 1px dashed rgb(66, 66, 66);
+}
+
+th {
+    text-align: center;
+    background-color: #6F1E9D;
+    color: white;
+}
+
+.btn {
+    background-color: #6F1E9D;
+    border: 2px solid #6F1E9D;
+    color: white;
+}
+
+.btn:hover {
+    background-color: white;
+    color: #6F1E9D;
+    border: 2px solid #6F1E9D;
 }
