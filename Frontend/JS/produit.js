@@ -44,9 +44,19 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
         localStorage.setItem("camera", JSON.stringify(cart));
       } else {
         let cart = JSON.parse(recup);
-        cart.push(data.name);
+        
+        // Injection info sur le produit
+        cart.push({
+          id: data.id,
+          name: data.name,
+          price: data.price,
+          quantity: recup.quantity+=1,
+          subTotal: recup.price*1
+        })
         localStorage.setItem("camera", JSON.stringify(cart));
       }
+
+      console.log(recup);
     });
     function redirectCart(productName) {
       window.location.href = `${window.location.origin}/cart.html?lastAddedProductName=${productName}`;
