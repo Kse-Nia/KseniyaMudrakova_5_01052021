@@ -56,6 +56,15 @@ h2 {
 }
 
 /* --- Page panier   --- */
+.itemNumber {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  border-radius: 20px;
+  background-color: white;
+  color: #6F1E9D;
+}
+
 #table {
   width: 90%;
   height: auto;
