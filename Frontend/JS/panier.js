@@ -21,23 +21,24 @@ let resultTotal = 0;
 let priceP = 1;
 
 for (let i = 0; i < recup.length; i++) {
-  affichagePanier.innerHTML += `
+if(recup === null){
+   alert("votre panier est vide");
+} else{
+    affichagePanier.innerHTML += `
     <tr>
         <td>${recup[i].name}</td>
         <td>1</td>
-        <td>${recup[i].price}</td>
+        <td>${recup[i].price} €</td>
         <td></td>
     </tr>
     `;
+}
 
   resultTotal = resultTotal + priceP;
 
-  console.log(recup);
 }
 console.log(resultTotal);
 
-// Recupération des produits du localStorage
-const camera = localStorage.getItem("camera");
 
 // Compteur nombre de produits
 

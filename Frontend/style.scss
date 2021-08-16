@@ -24,13 +24,6 @@ h2 {
     height: auto;
 }
 
-#main {
-    width: 100%;
-    height: auto;
-    padding: 5% 1% 5%;
-}
-
-
 /* --- NavBar --- */
 
 .navbar {
@@ -39,6 +32,12 @@ h2 {
 
 
 /* --- main   --- */
+#main {
+    width: 100%;
+    height: 100%;
+    padding: 5% 1% 5%;
+}
+
 .secondBack {
     background-color: #CCAFDD;
     width: 90%;
@@ -51,12 +50,20 @@ h2 {
 }
 
 .card {
-    width: 400px;
+    //width: 300px;
+    width: 50%;
+    background-color:#f7effc;
+    border-radius: 0 0 10px 10px;
+}
+
+.img-thumbnail{
+    max-width: 100%;
+    height: auto;
 }
 
 .footer {
     background-color: #6F1E9D;
-    ;
+    width: 100%;    ;
 }
 
 /* --- Page panier   --- */
@@ -64,10 +71,15 @@ h2 {
 .itemNumber{
     width: 20px;
     height: 20px;
-    margin: auto;
+    
     border-radius: 20px;
     background-color: white;
     color: #6F1E9D;
+}
+
+.form-group-validation{
+    width: 100%;
+    margin: 10% auto 0;
 }
 
 #table {
@@ -91,12 +103,12 @@ th {
 
 .btn {
     background-color: #6F1E9D;
-    border: 2px solid #6F1E9D;
+    border: 3px solid #6F1E9D;
     color: white;
 }
 
 .btn:hover {
     background-color: white;
     color: #6F1E9D;
-    border: 2px solid #6F1E9D;
+    border: 3px solid #6F1E9D;
 }

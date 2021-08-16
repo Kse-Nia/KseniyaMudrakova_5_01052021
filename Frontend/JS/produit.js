@@ -40,12 +40,10 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
 
       if (recup === null) {
         let cart = [];
-        cart.push(data.name);
+        //cart.push(data.name);
         localStorage.setItem("camera", JSON.stringify(cart));
-        console.log("Votre panier est vide");
       } else {
         let cart = JSON.parse(recup);
-        
         // Injection info sur le produit
         cart.push({
           id: data.id,
