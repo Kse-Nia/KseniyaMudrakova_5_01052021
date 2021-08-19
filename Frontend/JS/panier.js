@@ -1,11 +1,13 @@
 // Variables:
 
 let recup = JSON.parse(localStorage.getItem("camera"));
-let total = 0;
 let affichagePanier = document.getElementById("table");
+let containerPanier = document.getElementById("containerCart");
 
 let delateCart = document.getElementById("btnDelate");
 let confirmCart = document.getElementById("btnConfirm");
+
+console.log(recup);
 
 // Injection code HTML Panier
 
@@ -18,31 +20,27 @@ affichagePanier.innerHTML += `
 </tr>`;
 
 let resultTotal = 0;
-let priceP = 1;
+//priceP = recup.price;
 
 for (let i = 0; i < recup.length; i++) {
-if(recup === null){
-   alert("votre panier est vide");
-} else{
+  if (recup === null) {
+    containerPanier.innerHTML = "Votre panier est vide";
+  } else {
     affichagePanier.innerHTML += `
     <tr>
         <td>${recup[i].name}</td>
-        <td>1</td>
+        <td>${recup.length}</td>
         <td>${recup[i].price} €</td>
-        <td></td>
+        <td>${resultTotal} €</td>
     </tr>
     `;
+  }
+  let priceP = recup.price;
+  //resultTotal = resultTotal + priceP;
+  resultTotal = priceP * recup.length;
 }
 
-  resultTotal = resultTotal + priceP;
-
-}
 console.log(resultTotal);
-
-
-// Compteur nombre de produits
-
-let nmbArticles = document.getElementsByClassName("itemNumber");
 
 // Boutons suppression et validation panier
 
@@ -52,3 +50,15 @@ document.getElementById("btnDelate").addEventListener("click", () => {
   localStorage.clear();
   location.reload(true);
 });
+
+
+// Partie Regex formulaire de validation
+
+const order = document.getElementById("formOrder");
+const regexName = /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))$/;
+const regexAddress = /^(([a-zA-ZÀ-ÿ0-9]+[\s\-]{1}[a-zA-ZÀ-ÿ0-9]+)){1,10}$/;
+const regexCity =
+  /^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+)){1,10}$/;
+const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
+
+

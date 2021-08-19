@@ -17,9 +17,7 @@ fetch("http://localhost:3000/api/cameras")
      // Formatage du prix pour l'afficher en euros
      data.price = data.price / 100;
 
-
     for (let i = 0; i < data.length; i++) {
-      console.log(data);
       docHtml.innerHTML += `
       <div class="card  text-dark">
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
@@ -29,7 +27,7 @@ fetch("http://localhost:3000/api/cameras")
       <div class="card-body text-center">
         <h3 class="card-title">${data[i].name}</h3>
         <p class="card-text text-dark">${data[i].description}</p>
-        <p class="card-text text-dark fw-bolder">${data[i].price} € </p>
+        <p class="card-text text-dark fw-bolder">${data[i].price / 100} € </p>
       </div>
       </a>
       </div>
