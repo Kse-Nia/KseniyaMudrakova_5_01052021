@@ -37,10 +37,10 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
       event.preventDefault();
       let recup = localStorage.getItem("camera");
       //let allProducts = JSON.stringify(localStorage.getItem("camera"));
-
+      console.log(recup);
       if (recup === null) {
         let cart = [];
-        //cart.push(data.name);
+        cart.push(data.name);
         localStorage.setItem("camera", JSON.stringify(cart));
       } else {
         let cart = JSON.parse(recup);
@@ -54,8 +54,6 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
         })
         localStorage.setItem("camera", JSON.stringify(cart));
       }
-
-      console.log(recup);
     });
     function redirectCart(productName) {
       window.location.href = `${window.location.origin}/cart.html?lastAddedProductName=${productName}`;
