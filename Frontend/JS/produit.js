@@ -9,7 +9,6 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
   //
   .then((data) => {
     console.log(data);
-
     docHtml.innerHTML += `
     <div class="card  text-dark" style="background-color:#f0f1ff;">
     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
@@ -48,13 +47,14 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
         cart.push({
           id: data.id,
           name: data.name,
-          price: data.price,
-          quantity: recup.quantity+=1,
-          subTotal: recup.price*1
-        })
+          price: data.price/100,
+          quantity: (recup.quantity += 1),
+          subTotal: recup.price * 1,
+        });
         localStorage.setItem("camera", JSON.stringify(cart));
       }
     });
+
     function redirectCart(productName) {
       window.location.href = `${window.location.origin}/cart.html?lastAddedProductName=${productName}`;
     }
