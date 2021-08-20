@@ -9,6 +9,7 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
   //
   .then((data) => {
     console.log(data);
+
     docHtml.innerHTML += `
     <div class="card  text-dark" style="background-color:#f0f1ff;">
     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
@@ -19,7 +20,7 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
     <div class="card-body text-center">
       <h3 class="card-title">${data.name}</h3>
       <p class="card-text text-dark">${data.description}</p>
-      <p class="card-text text-dark fw-bolder">${data.price} € </p>
+      <p class="card-text text-dark fw-bolder">${data.price / 100} € </p>
       <div class="select-box d-flex flex-column ">
       <select name="selection" id="lense">
       ${data.lenses.map(
@@ -32,30 +33,33 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
     </div>
   </div>`;
 
-    document.getElementById("addToCart").addEventListener("click", () => {
-      event.preventDefault();
-      let recup = localStorage.getItem("camera");
-      //let allProducts = JSON.stringify(localStorage.getItem("camera"));
-      console.log(recup);
-      if (recup === null) {
-        let cart = [];
-        cart.push(data.name);
-        localStorage.setItem("camera", JSON.stringify(cart));
-      } else {
-        let cart = JSON.parse(recup);
-        // Injection info sur le produit
-        cart.push({
-          id: data.id,
-          name: data.name,
-          price: data.price / 100,
-          quantity: (recup.quantity += 1),
-          subTotal: recup.price * 1,
-        });
-        localStorage.setItem("camera", JSON.stringify(cart));
-      }
-    });
+    document.getElementById("addToCart").addEventListener("click", onAddToCart);
 
-    function redirectCart(productName) {
-      window.location.href = `${window.location.origin}/cart.html?lastAddedProductName=${productName}`;
+    function onAddToCart(event) {
+      event.preventDefault();
+      const camera = getCamera();
+
+      camera.push({
+        id: data.id,
+        name: data.name,
+        price: data.price / 100,
+        quantity: data.quantity // undefined
+      });
+      localStorage.setItem("camera", JSON.stringify(camera));
+    }
+
+    function getCamera() {
+      const camera = localStorage.getItem("camera");
+
+      if (!camera) {
+        return [];
+      }
+
+      try {
+        const parsedCamera = JSON.parse(camera);
+        return parsedCamera;
+      } catch (e) {
+        return [];
+      }
     }
   });
