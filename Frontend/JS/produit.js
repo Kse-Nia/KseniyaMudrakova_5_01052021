@@ -47,7 +47,7 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
         cart.push({
           id: data.id,
           name: data.name,
-          price: data.price/100,
+          price: data.price / 100,
           quantity: (recup.quantity += 1),
           subTotal: recup.price * 1,
         });
