@@ -20,29 +20,26 @@ affichagePanier.innerHTML += `
 </tr>`;
 
 let resultTotal = 0;
-//priceP = recup.price;
+let totalCommand = 0;
 
 for (let i = 0; i < recup.length; i++) {
-  let resultTotal = recup.price * recup.length;
+
+  resultTotal = recup[i].price * recup[i].quantity;
+  totalCommand = totalCommand + resultTotal;
   if (recup === null) {
     containerPanier.innerHTML = "Votre panier est vide";
   } else {
     affichagePanier.innerHTML += `
     <tr>
         <td>${recup[i].name}</td>
-        <td>${recup.length}</td>
+        <td>${recup[i].quantity}</td>
         <td>${recup[i].price} €</td>
         <td class="totalPrice">${resultTotal} €</td>
     </tr>
     `;
   }
-  let priceP = recup.price;
-
-  //resultTotal = resultTotal + priceP;
-  resultTotal = priceP * recup.length;
 }
-
-console.log(resultTotal);
+console.log(totalCommand);
 
 // Boutons suppression et validation panier
 
@@ -66,8 +63,7 @@ form.email.addEventListener("change", function () {
 
 const validEmail = function (inputEmail) {
   let emailRegex = new RegExp(
-    "^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}.[a-z]{2,4}$",
-    "g"
+    "^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}.[a-z]{2,4}$", "g"
   );
   let testEmail = emailRegex.test(inputEmail.value);
   let small = inputEmail.nextElementSibling;
@@ -79,13 +75,10 @@ const validEmail = function (inputEmail) {
     small.innerHTML = "Adresse mail non valide";
     small.classList.remove('Success');
     small.classList.add('Erreur');
-
   }
 };
 
-
 // ** Partie nom
-
 
 form.name.addEventListener("change", function () {
   validName(this);
@@ -108,24 +101,3 @@ const validName = function (inputName) {
 
   }
 };
-
-/*
-
-const validName = function(inputName){
-  let validName = new nameRegex(
-'^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))$', 'g'
-  );
-  let testName = validName.test(inputName.value);
-};
-const validCity = function(inputCity){
-  let validationCity = new cityRegex(
-    '^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+)){1,10}$', 'g'
-  );
-};
-const validAdress = function (inputAdress){
-  let validationAdress = new adressRegex(
-    '^(([a-zA-ZÀ-ÿ0-9]+[\s\-]{1}[a-zA-ZÀ-ÿ0-9]+)){1,10}$'
-  );
-};
-
-*/

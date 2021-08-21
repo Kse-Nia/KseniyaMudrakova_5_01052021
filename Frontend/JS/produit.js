@@ -24,7 +24,7 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
       <div class="select-box d-flex flex-column ">
       <select name="selection" id="lense">
       ${data.lenses.map(
-        (lense) => `<option value=${lense} id=${data.id}>${lense}</option>`
+        (lense) => `<option value="${lense}">${lense}</option>`
       )}
       <input id="addToCart" class="btn btn-primary mt-3" type="submit" value="Ajouter au panier">
       </select>
@@ -40,10 +40,10 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
       const camera = getCamera();
 
       camera.push({
-        id: data.id,
+        id: data._id,
         name: data.name,
         price: data.price / 100,
-        quantity: data.quantity // undefined
+        quantity: 1 // undefined
       });
       localStorage.setItem("camera", JSON.stringify(camera));
     }
