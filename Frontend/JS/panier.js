@@ -50,6 +50,7 @@ document.getElementById("btnDelate").addEventListener("click", () => {
   location.reload(true);
 });
 
+
 // Partie Regex formulaire de validation
 
 let form = document.querySelector("#submitForm");
@@ -68,13 +69,13 @@ const validEmail = function (inputEmail) {
   let testEmail = emailRegex.test(inputEmail.value);
   let small = inputEmail.nextElementSibling;
   if (testEmail) {
-    small.innerHTML = "Adresse valide";
-    small.classList.remove('Erreur');
+    small.innerHTML = "Mail valide";
+    small.classList.remove('Erreur - veillez entrer une adresse mail valide');
     small.classList.add('Success');
   } else {
-    small.innerHTML = "Adresse mail non valide";
-    small.classList.remove('Success');
-    small.classList.add('Erreur');
+    small.innerHTML = "Erreur - veillez entrer une adresse mail valide";
+    small.classList.remove('Mail valide');
+    small.classList.add('Erreur - veillez entrer une adresse mail valide');
   }
 };
 
@@ -89,15 +90,64 @@ const validName = function (inputName) {
     '^(([a-zA-ZÀ-ÿ]+[\s\-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))$', 'g'
   );
   let testName = nameRegex.test(inputName.value);
-  let small = inputName.nextElementSibling;
-  if (testEmail) {
-    small.innerHTML = "Nom valide";
-    small.classList.remove('Erreur');
-    small.classList.add('Success');
+  let small2 = inputName.nextElementSibling;
+  if (testName) {
+    small2.innerHTML = "Nom valide";
+    small2.classList.remove('Erreur');
+    small2.classList.add('Success');
   } else {
-    small.innerHTML = "Nom non valide";
-    small.classList.remove('Success');
-    small.classList.add('Erreur');
+    small2.innerHTML = "Nom non valide";
+    small2.classList.remove('Success');
+    small2.classList.add('Erreur');
 
   }
 };
+
+
+// ** Partie ville
+
+form.city.addEventListener("change", function () {
+  validCity(this);
+});
+
+const validCity = function (inputCity) {
+  let cityRegex = new RegExp(
+    '^[a-zA-z] ?([a-zA-z]|[a-zA-z] )*[a-zA-z]$', 'g'
+  );
+  let testCity = cityRegex.test(inputCity.value);
+  let small3 = inputCity.nextElementSibling;
+  if (testCity) {
+    small3.innerHTML = "Ville valide";
+    small3.classList.remove('Erreur');
+    small3.classList.add('Success');
+  } else {
+    small3.innerHTML = "Ville non valide";
+    small3.classList.remove('Success');
+    small3.classList.add('Erreur');
+  }
+};
+
+
+// ** Partie Adresse
+
+form.adress.addEventListener("change", function () {
+  validAdress(this);
+});
+
+const validAdress = function (inputAdress) {
+  let adressRegex = new RegExp(
+    '^.{6,}$', 'g'
+  );
+  let testAdress = adressRegex.test(inputAdress.value);
+  let small4 = inputAdress.nextElementSibling;
+  if (testAdress) {
+    small4.innerHTML = "Adresse valide";
+    small4.classList.remove('Veillez entrer votre adresse');
+    small4.classList.add('Adresse valide');
+  } else {
+    small4.innerHTML = "Veillez entrer votre adresse";
+    small4.classList.remove('Adresse valide');
+    small4.classList.add('Veillez entrer votre adresse');
+  }
+};
+
