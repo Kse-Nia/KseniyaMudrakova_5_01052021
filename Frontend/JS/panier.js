@@ -151,3 +151,4 @@ const validAdress = function (inputAdress) {
   }
 };
 
+let validationBtn = document.getElementById('btnConfirm');
