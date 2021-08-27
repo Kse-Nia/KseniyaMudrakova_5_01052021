@@ -179,6 +179,11 @@ input::placeholder {
   color: white;
 }
 
+.delateItem {
+  margin: auto 5% auto;
+  color: rgba(177, 5, 5, 0.877);
+}
+
 .btn:hover {
   background-color: #8c26c7;
   color: #ffffff;
