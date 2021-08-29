@@ -14,7 +14,7 @@ fetch("http://localhost:3000/api/cameras")
 
   .then((data) => {
 
-     // Formatage du prix pour l'afficher en euros
+     // Formatage du prix pour l'afficher correctement
      data.price = data.price / 100;
 
     for (let i = 0; i < data.length; i++) {

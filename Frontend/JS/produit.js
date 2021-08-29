@@ -43,7 +43,7 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
         id: data._id,
         name: data.name,
         price: data.price / 100,
-        quantity: 1 // undefined
+        quantity: 1, 
       });
       localStorage.setItem("camera", JSON.stringify(camera));
     }
@@ -63,3 +63,9 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
       }
     }
   });
+
+// Nombre
+
+function cartNumber() {
+  let productNumber = localStorage.getItem;
+}

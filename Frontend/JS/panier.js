@@ -41,8 +41,6 @@ for (let i = 0; i < recup.length; i++) {
   }
 }
 
-console.log(totalCommand);
-
 // Boutons suppression et validation panier
 
 document.getElementById("btnDelate").addEventListener("click", () => {
@@ -52,24 +50,6 @@ document.getElementById("btnDelate").addEventListener("click", () => {
   location.reload(true);
 });
 
-// Bouton suppression d'un article
-
-for(let i = 0; i<recup.length; i++){
-  console.log(recup[i]); //renvoit le tableau d'objets
-  let delateBtnItel = document.getElementsByClassName('delateItem');
-  deleteButton.addEventListener("click", function(){
-  localStorage.removeItem(recup[i]);
-});
-
-
-/*
-function removeItem(name) {
-for (let i = 0; i < recup.length; i++) {
-  if (recup[i].name === name) {
-    recup.splice(i, 1);
-  }
-}
-*/
 
 // Partie Regex formulaire de validation
 
@@ -173,13 +153,3 @@ const validAdress = function (inputAdress) {
     return false;
   }
 };
-
-
-// Validation formulaire
-/*
-form.addEventListener("submit", function (e) {
-e.preventDefault();
-
-});
-
-*/
