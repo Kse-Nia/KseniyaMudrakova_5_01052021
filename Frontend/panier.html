@@ -28,9 +28,9 @@
             <a href="./panier.html" class="nav-link text-light fs-4">Panier</a>
         </nav>
     </header>
-    <main id="main d-flex flex-column">
+    <main id="main">
         <h1 class="descript fs-1 text">Votre panier</h1>
-        <section id="containerCart flex flex-column">
+        <section id="containerCart" class=" flex flex-column">
             <table id="table">
             </table>
             <table id="tableTotalPanier" class="d-flex justify-content-end"></table>
@@ -39,7 +39,8 @@
         </section>
         <section>
             <div class="container-formulaire mt-5 mb-5" id="formOrder">
-                <!-- Partie forme -->
+
+                <!-- Partie formulaire de validation -->
                 <p class="fs-4 text">Valider votre commande</p>
                 <div class="d-flex flex-column justify-content-center ">
                     <form class="container d-flex flex-column justify-content-center " method="POST" id="submitForm">

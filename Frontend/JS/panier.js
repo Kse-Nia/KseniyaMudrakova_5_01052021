@@ -23,7 +23,7 @@ let totalCommand = 0;
 for (let i = 0; i < recup.length; i++) {
   resultTotal = recup[i].price * recup[i].quantity;
   totalCommand = totalCommand + resultTotal;
-  
+
   if (recup === null) {
     affichagePanier.innerHTML += `
     <tr>
@@ -56,11 +56,14 @@ console.log(totalCommand);
 
 document.getElementById("btnDelate").addEventListener("click", () => {
   let questionCart = confirm("Voulez-vous vraiment supprimer le panier?");
-  console.log(questionCart);
-  localStorage.clear();
-  location.reload(true);
+  if (questionCart) {
+    console.log(questionCart);
+    localStorage.clear();
+    location.reload(true);
+  } else {
+    //false
+  }
 });
-
 
 // Partie Regex formulaire de validation
 
@@ -93,7 +96,6 @@ const validFirstName = function (inputfirstname) {
     return false;
   }
 };
-
 
 // ** Partie nom
 
@@ -193,25 +195,27 @@ const validAdress = function (inputAdress) {
 };
 
 //Envoie des info
-document.getElementById('btnConfirm').addEventListener('click', function (event) {
- 
-  class Contact {
-      constructor(name, address, city, email) {
-          this.firstName = firstName;
-          this.address = address;
-          this.city = city;
-          this.email = email;
+document
+  .getElementById("btnConfirm")
+  .addEventListener("click", function (event) {
+    class Contact {
+      constructor(firstname, name, address, city, email) {
+        this.firstName = firstName;
+        this.address = address;
+        this.city = city;
+        this.email = email;
       }
-  }
-});
+    }
+  });
 
-
-const order ={
-  contact :{
-  name :document.querySelector("#nom").value,
-  address:document.querySelector("#adress").value,
-  city :document.querySelector("#city").value,
-  email:document.querySelector("#email").value
+const order = {
+  contact: {
+    name: document.querySelector("#nom").value,
+    address: document.querySelector("#adress").value,
+    city: document.querySelector("#city").value,
+    email: document.querySelector("#email").value,
   },
   products: recup,
-  };
+};
+
+// Envoie du formulaire dans localStorage
