@@ -23,6 +23,7 @@ let totalCommand = 0;
 for (let i = 0; i < recup.length; i++) {
   resultTotal = recup[i].price * recup[i].quantity;
   totalCommand = totalCommand + resultTotal;
+  
   if (recup === null) {
     affichagePanier.innerHTML += `
     <tr>
@@ -36,10 +37,20 @@ for (let i = 0; i < recup.length; i++) {
         <td>${recup[i].quantity}</td>
         <td>${recup[i].price} €</td>
         <td class="totalPrice d-flex justify-content-end">${resultTotal} € <i class="delateItem fas fa-trash-alt"></i></td>
-    </tr>
-    `;
+        </tr>    
+        `;
   }
 }
+let affichageTotalPanier = document.getElementById("tableTotalPanier");
+
+affichageTotalPanier.innerHTML += `
+<tr>
+    <th>Total de la commande: </th>
+    <td>${totalCommand} €</td>
+</tr>
+`;
+
+console.log(totalCommand);
 
 // Boutons suppression et validation panier
 
@@ -57,30 +68,32 @@ let form = document.querySelector("#submitForm");
 
 // Ecouter modifs
 
-// ** Partie mail
-form.email.addEventListener("change", function () {
-  validEmail(this);
+// ** Partie nom
+
+form.firstname.addEventListener("change", function () {
+  validFirstName(this);
 });
 
-const validEmail = function (inputEmail) {
-  let emailRegex = new RegExp(
-    "^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}.[a-z]{2,4}$",
+const validFirstName = function (inputfirstname) {
+  let firstNameRegex = new RegExp(
+    "^(([a-zA-ZÀ-ÿ]+[s-]{1}[a-zA-ZÀ-ÿ]+)|([a-zA-ZÀ-ÿ]+))$",
     "g"
   );
-  let testEmail = emailRegex.test(inputEmail.value);
-  let small = inputEmail.nextElementSibling;
-  if (testEmail) {
-    small.innerHTML = "Mail valide";
-    small.classList.remove("Erreur - veillez entrer une adresse mail valide");
-    small.classList.add("Success");
+  let testFirstName = firstNameRegex.test(inputfirstname.value);
+  let small1 = inputfirstname.nextElementSibling;
+  if (testFirstName) {
+    small1.innerHTML = "Prénom valide";
+    small1.classList.remove("Erreur");
+    small1.classList.add("Prénom valide");
     return true;
   } else {
-    small.innerHTML = "Erreur - veillez entrer une adresse mail valide";
-    small.classList.remove("Mail valide");
-    small.classList.add("Erreur - veillez entrer une adresse mail valide");
+    small1.innerHTML = "Prénom non valide";
+    small1.classList.remove("Success");
+    small1.classList.add("Prénom valide");
     return false;
   }
 };
+
 
 // ** Partie nom
 
@@ -104,6 +117,31 @@ const validName = function (inputName) {
     small2.innerHTML = "Nom non valide";
     small2.classList.remove("Success");
     small2.classList.add("Erreur");
+    return false;
+  }
+};
+
+// ** Partie mail
+form.email.addEventListener("change", function () {
+  validEmail(this);
+});
+
+const validEmail = function (inputEmail) {
+  let emailRegex = new RegExp(
+    "^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}.[a-z]{2,4}$",
+    "g"
+  );
+  let testEmail = emailRegex.test(inputEmail.value);
+  let small = inputEmail.nextElementSibling;
+  if (testEmail) {
+    small.innerHTML = "Mail valide";
+    small.classList.remove("Erreur - veillez entrer une adresse mail valide");
+    small.classList.add("Success");
+    return true;
+  } else {
+    small.innerHTML = "Erreur - veillez entrer une adresse mail valide";
+    small.classList.remove("Mail valide");
+    small.classList.add("Erreur - veillez entrer une adresse mail valide");
     return false;
   }
 };
@@ -153,3 +191,27 @@ const validAdress = function (inputAdress) {
     return false;
   }
 };
+
+//Envoie des info
+document.getElementById('btnConfirm').addEventListener('click', function (event) {
+ 
+  class Contact {
+      constructor(name, address, city, email) {
+          this.firstName = firstName;
+          this.address = address;
+          this.city = city;
+          this.email = email;
+      }
+  }
+});
+
+
+const order ={
+  contact :{
+  name :document.querySelector("#nom").value,
+  address:document.querySelector("#adress").value,
+  city :document.querySelector("#city").value,
+  email:document.querySelector("#email").value
+  },
+  products: recup,
+  };

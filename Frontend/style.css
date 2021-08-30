@@ -109,12 +109,20 @@ h2 {
 #table {
   width: 90%;
   height: auto;
-  margin: 10% auto 10%;
+  margin: 10% auto 5%;
+}
+
+#tableTotalPanier {
+  margin: 2% 5% 5%;
 }
 
 section {
   width: 100%;
   height: auto;
+}
+
+.totalAchat {
+  background-color: blue;
 }
 
 tr,
