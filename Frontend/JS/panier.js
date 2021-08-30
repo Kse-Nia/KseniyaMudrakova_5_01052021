@@ -52,7 +52,7 @@ affichageTotalPanier.innerHTML += `
 
 console.log(totalCommand);
 
-// Boutons suppression et validation panier
+// Supprimer tout le panier
 
 document.getElementById("btnDelate").addEventListener("click", () => {
   let questionCart = confirm("Voulez-vous vraiment supprimer le panier?");

@@ -107,7 +107,7 @@ h2 {
 }
 
 #table {
-  width: 90%;
+  width: 70%;
   height: auto;
   margin: 10% auto 5%;
 }
@@ -138,7 +138,7 @@ th {
 }
 
 .form-group {
-  width: 80%;
+  width: 40%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
