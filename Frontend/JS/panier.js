@@ -37,7 +37,7 @@ for (let i = 0; i < recup.length; i++) {
         <td>${recup[i].name}</td>
         <td>${recup[i].quantity}</td>
         <td>${recup[i].price} €</td>
-        <td class="totalPrice d-flex justify-content-end">${resultTotal} € <button id="delateItem" class="m-2 border-1 rounded-start border-warning"><i class="fas fa-trash-alt"></i></button></td>
+        <td><button id="delateItem" class="m-2 border-1 rounded-start border-warning"><i class="fas fa-trash-alt"></i></button></td>
         </tr>
         `;
   }
@@ -45,14 +45,14 @@ for (let i = 0; i < recup.length; i++) {
 let affichageTotalPanier = document.getElementById("tableTotalPanier");
 affichageTotalPanier.innerHTML += `
 <tr>
-    <th>Total de la commande: </th>
-    <td>${totalCommand} €</td>
+    <th  class="p-2">Total de la commande: </th>
+    <td class="p-2">${totalCommand} €</td>
 </tr>
 `;
 
 // Supprimer un seul article du panier
 
-const btnDeleteItem = document.getElementById("delateItem");
+const btnDeleteItem = document.querySelectorAll("delateItem");
 
 Object.keys(btnDeleteItem).forEach((btn, i) =>
   btn.addEventListener("click", () => deleteItemSelection(i))
@@ -64,7 +64,7 @@ function deleteItemSelection(index) {
   if (recup.length === 0) {
     localStorage.removeItem("camera");
   }
-  updateQuantity();
+ // updateQuantity();
   localStorage.setItem(camera, JSON.stringify(recup));
 }
 
