@@ -86,6 +86,11 @@ h2 {
     height: auto;
 }
 
+.card-img-cart {
+    max-width: 100%;
+    height: auto;
+}
+
 /* --- Page panier   --- */
 
 .itemNumber {
@@ -100,18 +105,23 @@ h2 {
 #table {
     width: 70%;
     height: auto;
-    margin: 10% auto 5%;
+    margin: 5% auto 5%;
 }
 
-#tableTotalPanier{
+#table .produit {
+    width: 20%;
+}
+
+#tableTotalPanier {
     margin: 2% 5% 5%;
 }
+
 section {
     width: 100%;
     height: auto;
 }
 
-.totalAchat{
+.totalAchat {
     background-color: blue;
 }
 
@@ -148,7 +158,8 @@ input {
     border: 1px solid rgba(121, 9, 173, 0.301);
     height: 5vh;
     border-radius: 5px;
-    &::placeholder {    
+
+    &::placeholder {
         color: #adadadb9;
     }
 }
@@ -159,7 +170,7 @@ input {
     color: white;
 }
 
-.delateItem{
+.delateItem {
     margin: auto 5% auto;
     color: rgba(177, 5, 5, 0.877);
 }

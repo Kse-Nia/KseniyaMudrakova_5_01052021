@@ -41,6 +41,7 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
 
       camera.push({
         id: data._id,
+        imageUrl: data.imageUrl,
         name: data.name,
         price: data.price / 100,
         quantity: 1, 
@@ -69,3 +70,5 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
 function cartNumber() {
   let productNumber = localStorage.getItem;
 }
+
+console.log('camera');

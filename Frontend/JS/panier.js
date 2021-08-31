@@ -11,10 +11,10 @@ let confirmCart = document.getElementById("btnConfirm");
 
 affichagePanier.innerHTML += `
 <tr>
-    <th>Produit</th>
+    <th class="produit">Produit</th>
+    <th>Nom</th>
     <th>Quantité</th>
     <th>Prix</th>
-    <th>Total</th>
 </tr>`;
 
 let resultTotal = 0;
@@ -32,17 +32,17 @@ for (let i = 0; i < recup.length; i++) {
     `;
   } else {
     affichagePanier.innerHTML += `
-    <tr>
+    <tr class="text-center">
+    <td><img src=${recup[i].imageUrl} class="card-img-cart img-fluid" alt="un appareil photo"></td>
         <td>${recup[i].name}</td>
         <td>${recup[i].quantity}</td>
         <td>${recup[i].price} €</td>
-        <td class="totalPrice d-flex justify-content-end">${resultTotal} € <i class="delateItem fas fa-trash-alt"></i></td>
-        </tr>    
+        <td class="totalPrice d-flex justify-content-end">${resultTotal} € <button id="delateItem" class="m-2 border-1 rounded-start border-warning"><i class="fas fa-trash-alt"></i></button></td>
+        </tr>
         `;
   }
 }
 let affichageTotalPanier = document.getElementById("tableTotalPanier");
-
 affichageTotalPanier.innerHTML += `
 <tr>
     <th>Total de la commande: </th>
@@ -50,7 +50,23 @@ affichageTotalPanier.innerHTML += `
 </tr>
 `;
 
-console.log(totalCommand);
+// Supprimer un seul article du panier
+
+const btnDeleteItem = document.getElementById("delateItem");
+
+Object.keys(btnDeleteItem).forEach((btn, i) =>
+  btn.addEventListener("click", () => deleteItemSelection(i))
+);
+
+function deleteItemSelection(index) {
+  recup.slice(index, 1);
+  localStorage.setItem(camera, JSON.parse(recup));
+  if (recup.length === 0) {
+    localStorage.removeItem("camera");
+  }
+  updateQuantity();
+  localStorage.setItem(camera, JSON.stringify(recup));
+}
 
 // Supprimer tout le panier
 

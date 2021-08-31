@@ -97,6 +97,11 @@ h2 {
   height: auto;
 }
 
+.card-img-cart {
+  max-width: 100%;
+  height: auto;
+}
+
 /* --- Page panier   --- */
 .itemNumber {
   width: 20px;
@@ -109,7 +114,11 @@ h2 {
 #table {
   width: 70%;
   height: auto;
-  margin: 10% auto 5%;
+  margin: 5% auto 5%;
+}
+
+#table .produit {
+  width: 20%;
 }
 
 #tableTotalPanier {
