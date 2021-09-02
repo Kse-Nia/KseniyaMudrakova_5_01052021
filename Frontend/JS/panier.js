@@ -7,7 +7,7 @@ let containerPanier = document.getElementById("containerCart");
 let delateCart = document.getElementById("btnDelate");
 let confirmCart = document.getElementById("btnConfirm");
 
-// Injection code HTML Panier
+// -------------------------------------------- Injection code HTML Panier -------------------------------------------- //
 
 affichagePanier.innerHTML += `
 <tr>
@@ -37,7 +37,7 @@ for (let i = 0; i < recup.length; i++) {
         <td>${recup[i].name}</td>
         <td>${recup[i].quantity}</td>
         <td>${recup[i].price} €</td>
-        <td><button id="delateItem" class="m-2 border-1 rounded-start border-warning"><i class="fas fa-trash-alt"></i></button></td>
+        <td><button class="deleteItem m-2 rounded-start"><i class="fas fa-trash-alt"></i></button></td>
         </tr>
         `;
   }
@@ -50,27 +50,25 @@ affichageTotalPanier.innerHTML += `
 </tr>
 `;
 
-// Supprimer un seul article du panier
+// -------------------------------------------- Supprimer un seul article du panier --------------------------------------------//
 
-const btnDeleteItem = document.querySelectorAll("delateItem");
+let btnDeleteItem = document.querySelectorAll(".deleteItem");
 
-Object.keys(btnDeleteItem).forEach((btn, i) =>
-  btn.addEventListener("click", () => deleteItemSelection(i))
-);
+console.log(btnDeleteItem);
 
-function deleteItemSelection(index) {
-  recup.slice(index, 1);
-  localStorage.setItem(camera, JSON.parse(recup));
-  if (recup.length === 0) {
-    localStorage.removeItem("camera");
-  }
- // updateQuantity();
-  localStorage.setItem(camera, JSON.stringify(recup));
+for (let i = 0; 1 < btnDeleteItem.length; i++) {
+  btnDeleteItem[i].addEventListener("click", (event) => {
+    event.preventDefault(); // Pour éviter rechargement auto de la page
+
+    let idDelate = recup[i].idSelect;
+    console.log("idDelate");
+    console.log(idDelate);
+  });
 }
 
-// Supprimer tout le panier
+// -------------------------------------------- Supprimer tout le panier --------------------------------------------
 
-document.getElementById("btnDelate").addEventListener("click", () => {
+document.getElementById("btnDelete").addEventListener("click", () => {
   let questionCart = confirm("Voulez-vous vraiment supprimer le panier?");
   if (questionCart) {
     console.log(questionCart);
@@ -81,13 +79,20 @@ document.getElementById("btnDelate").addEventListener("click", () => {
   }
 });
 
-// Partie Regex formulaire de validation
+// ***** Affichage du formulaire ou non ***** //
+
+if (!recup) {
+  let displayValidation = document.getElementsByClassName("displayValidation");
+  displayValidation.style.display = "none";
+}
+
+// -------------------------------------------- Partie Regex formulaire de validation  --------------------------------------------//
 
 let form = document.querySelector("#submitForm");
 
 // Ecouter modifs
 
-// ** Partie nom
+// ** Partie prénom ** //
 
 form.firstname.addEventListener("change", function () {
   validFirstName(this);
@@ -113,7 +118,7 @@ const validFirstName = function (inputfirstname) {
   }
 };
 
-// ** Partie nom
+// ** Partie nom ** //
 
 form.name.addEventListener("change", function () {
   validName(this);
@@ -139,7 +144,8 @@ const validName = function (inputName) {
   }
 };
 
-// ** Partie mail
+// ** Partie mail ** //
+
 form.email.addEventListener("change", function () {
   validEmail(this);
 });
@@ -164,7 +170,7 @@ const validEmail = function (inputEmail) {
   }
 };
 
-// ** Partie ville
+// ** Partie ville ** //
 
 form.city.addEventListener("change", function () {
   validCity(this);
@@ -187,17 +193,17 @@ const validCity = function (inputCity) {
   }
 };
 
-// ** Partie Adresse
+// ** Partie Adresse  ** //
 
-form.adress.addEventListener("change", function () {
-  validAdress(this);
+form.address.addEventListener("change", function () {
+  validAddress(this);
 });
 
-const validAdress = function (inputAdress) {
-  let adressRegex = new RegExp("^.{6,}$", "g");
-  let testAdress = adressRegex.test(inputAdress.value);
-  let small4 = inputAdress.nextElementSibling;
-  if (testAdress) {
+const validAddress = function (inputAddress) {
+  let addressRegex = new RegExp("^.{6,}$", "g");
+  let testAddress = addressRegex.test(inputAddress.value);
+  let small4 = inputAddress.nextElementSibling;
+  if (testAddress) {
     small4.innerHTML = "Adresse valide";
     small4.classList.remove("Veillez entrer votre adresse");
     small4.classList.add("Adresse valide");
@@ -209,29 +215,3 @@ const validAdress = function (inputAdress) {
     return false;
   }
 };
-
-//Envoie des info
-document
-  .getElementById("btnConfirm")
-  .addEventListener("click", function (event) {
-    class Contact {
-      constructor(firstname, name, address, city, email) {
-        this.firstName = firstName;
-        this.address = address;
-        this.city = city;
-        this.email = email;
-      }
-    }
-  });
-
-const order = {
-  contact: {
-    name: document.querySelector("#nom").value,
-    address: document.querySelector("#adress").value,
-    city: document.querySelector("#city").value,
-    email: document.querySelector("#email").value,
-  },
-  products: recup,
-};
-
-// Envoie du formulaire dans localStorage

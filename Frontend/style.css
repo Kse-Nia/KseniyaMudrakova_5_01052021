@@ -112,7 +112,7 @@ h2 {
 }
 
 #table {
-  width: 80%;
+  width: 70%;
   height: auto;
   margin: 5% auto 5%;
 }
@@ -122,7 +122,11 @@ h2 {
 }
 
 #tableTotalPanier {
-  margin: 2% 5% 5%;
+  margin: 2% 15% 5%;
+}
+
+[required] {
+  border: 1px solid #8f62f7;
 }
 
 section {
@@ -130,14 +134,10 @@ section {
   height: auto;
 }
 
-.totalAchat {
-  background-color: blue;
-}
-
 tr,
 td,
 th {
-  border: 1px dashed #424242;
+  border: 1px solid #9b9a9a;
 }
 
 th {
@@ -170,23 +170,27 @@ th {
 input {
   background-color: rgba(234, 243, 245, 0.849);
   border: 1px solid rgba(121, 9, 173, 0.301);
-  height: 5vh;
+  height: 6vh;
   border-radius: 5px;
 }
 
 input::-webkit-input-placeholder {
+  padding: 2rem 0 2rem;
   color: #adadadb9;
 }
 
 input:-ms-input-placeholder {
+  padding: 2rem 0 2rem;
   color: #adadadb9;
 }
 
 input::-ms-input-placeholder {
+  padding: 2rem 0 2rem;
   color: #adadadb9;
 }
 
 input::placeholder {
+  padding: 2rem 0 2rem;
   color: #adadadb9;
 }
 
@@ -196,9 +200,10 @@ input::placeholder {
   color: white;
 }
 
-.delateItem {
+.deleteItem {
   margin: auto 5% auto;
   color: rgba(177, 5, 5, 0.877);
+  border: none;
 }
 
 .btn:hover {
