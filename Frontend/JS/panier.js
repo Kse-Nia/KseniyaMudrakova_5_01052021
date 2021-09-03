@@ -9,7 +9,11 @@ let confirmCart = document.getElementById("btnConfirm");
 
 // -------------------------------------------- Injection code HTML Panier -------------------------------------------- //
 
-affichagePanier.innerHTML += `
+if (recup === null) {
+  let emptyCartText = document.createTextNode("Votre panier est vide");
+  affichagePanier.appendChild(emptyCartText);
+} else {
+  affichagePanier.innerHTML += `
 <tr>
     <th class="produit">Produit</th>
     <th>Nom</th>
@@ -17,58 +21,70 @@ affichagePanier.innerHTML += `
     <th>Prix</th>
 </tr>`;
 
-let resultTotal = 0;
-let totalCommand = 0;
+  let resultTotal = 0;
+  let totalCommand = 0;
 
-for (let i = 0; i < recup.length; i++) {
-  resultTotal = recup[i].price * recup[i].quantity;
-  totalCommand = totalCommand + resultTotal;
+  for (let i = 0; i < recup.length; i++) {
+    resultTotal = recup[i].price * recup[i].quantity;
+    totalCommand = totalCommand + resultTotal;
 
-  if (recup === null) {
-    affichagePanier.innerHTML += `
+    if (recup === null) {
+      affichagePanier.innerHTML += `
     <tr>
         <td>Votre panier est vide</td>
     </tr>
     `;
-  } else {
-    affichagePanier.innerHTML += `
+    } else {
+      affichagePanier.innerHTML += `
     <tr class="text-center">
     <td><img src=${recup[i].imageUrl} class="card-img-cart img-fluid" alt="un appareil photo"></td>
         <td>${recup[i].name}</td>
         <td>${recup[i].quantity}</td>
         <td>${recup[i].price} €</td>
-        <td><button class="deleteItem m-2 rounded-start"><i class="fas fa-trash-alt"></i></button></td>
+        <td><button id="deleteItem" class="m-2 rounded-start"><i class="fas fa-trash-alt"></i></button></td>
         </tr>
         `;
+    }
   }
-}
-let affichageTotalPanier = document.getElementById("tableTotalPanier");
-affichageTotalPanier.innerHTML += `
+  let affichageTotalPanier = document.getElementById("tableTotalPanier");
+  affichageTotalPanier.innerHTML += `
 <tr>
     <th  class="p-2">Total de la commande: </th>
     <td class="p-2">${totalCommand} €</td>
 </tr>
 `;
+}
 
 // -------------------------------------------- Supprimer un seul article du panier --------------------------------------------//
 
-let btnDeleteItem = document.querySelectorAll(".deleteItem");
+let btnDeleteItem = document.querySelectorAll("#deleteItem");
 
 console.log(btnDeleteItem);
 
-for (let i = 0; 1 < btnDeleteItem.length; i++) {
+for (let i = 0; i < btnDeleteItem.length; i++) {
   btnDeleteItem[i].addEventListener("click", (event) => {
     event.preventDefault(); // Pour éviter rechargement auto de la page
 
     let idDelate = recup[i].idSelect;
+    console.log(i);
     console.log("idDelate");
     console.log(idDelate);
+
+    // recup = recup.filter((element) => element.idSelect !== idDelate);
+    recup.splice(i, 1);
+    localStorage.setItem("camera", JSON.stringify(recup)); // Variable vers le localStorage
+
+    // Rechargement de la page + alerte
+
+    alert("Produit supprimé du panier");
+    window.location.href = "panier.html";
   });
 }
 
 // -------------------------------------------- Supprimer tout le panier --------------------------------------------
+let clearCart = document.getElementById("btnDeleteCart");
 
-document.getElementById("btnDelete").addEventListener("click", () => {
+clearCart.addEventListener("click", () => {
   let questionCart = confirm("Voulez-vous vraiment supprimer le panier?");
   if (questionCart) {
     console.log(questionCart);
@@ -83,14 +99,12 @@ document.getElementById("btnDelete").addEventListener("click", () => {
 
 if (!recup) {
   let displayValidation = document.getElementsByClassName("displayValidation");
-  displayValidation.style.display = "none";
+  displayValidation[0].style.display = "none";
 }
 
 // -------------------------------------------- Partie Regex formulaire de validation  --------------------------------------------//
 
 let form = document.querySelector("#submitForm");
-
-// Ecouter modifs
 
 // ** Partie prénom ** //
 
@@ -107,13 +121,13 @@ const validFirstName = function (inputfirstname) {
   let small1 = inputfirstname.nextElementSibling;
   if (testFirstName) {
     small1.innerHTML = "Prénom valide";
-    small1.classList.remove("Erreur");
-    small1.classList.add("Prénom valide");
+    //    small1.classList.remove("Erreur");
+    //  small1.classList.add("Prénom valide");
     return true;
   } else {
     small1.innerHTML = "Prénom non valide";
-    small1.classList.remove("Success");
-    small1.classList.add("Prénom valide");
+    //   small1.classList.remove("Success");
+    // small1.classList.add("Prénom valide");
     return false;
   }
 };
@@ -133,13 +147,13 @@ const validName = function (inputName) {
   let small2 = inputName.nextElementSibling;
   if (testName) {
     small2.innerHTML = "Nom valide";
-    small2.classList.remove("Erreur");
-    small2.classList.add("Success");
+    //   small2.classList.remove("Erreur");
+    // small2.classList.add("Success");
     return true;
   } else {
     small2.innerHTML = "Nom non valide";
-    small2.classList.remove("Success");
-    small2.classList.add("Erreur");
+    //  small2.classList.remove("Success");
+    // small2.classList.add("Erreur");
     return false;
   }
 };
@@ -159,13 +173,13 @@ const validEmail = function (inputEmail) {
   let small = inputEmail.nextElementSibling;
   if (testEmail) {
     small.innerHTML = "Mail valide";
-    small.classList.remove("Erreur - veillez entrer une adresse mail valide");
-    small.classList.add("Success");
+    // small.classList.remove("Erreur - veillez entrer une adresse mail valide");
+    // small.classList.add("Success");
     return true;
   } else {
     small.innerHTML = "Erreur - veillez entrer une adresse mail valide";
-    small.classList.remove("Mail valide");
-    small.classList.add("Erreur - veillez entrer une adresse mail valide");
+    //    small.classList.remove("Mail valide");
+    //  small.classList.add("Erreur - veillez entrer une adresse mail valide");
     return false;
   }
 };
@@ -182,13 +196,13 @@ const validCity = function (inputCity) {
   let small3 = inputCity.nextElementSibling;
   if (testCity) {
     small3.innerHTML = "Ville valide";
-    small3.classList.remove("Erreur");
-    small3.classList.add("Success");
+    //   small3.classList.remove("Erreur");
+    //  small3.classList.add("Success");
     return true;
   } else {
     small3.innerHTML = "Ville non valide";
-    small3.classList.remove("Success");
-    small3.classList.add("Erreur");
+    //    small3.classList.remove("Success");
+    //  small3.classList.add("Erreur");
     return false;
   }
 };
@@ -205,13 +219,25 @@ const validAddress = function (inputAddress) {
   let small4 = inputAddress.nextElementSibling;
   if (testAddress) {
     small4.innerHTML = "Adresse valide";
-    small4.classList.remove("Veillez entrer votre adresse");
-    small4.classList.add("Adresse valide");
+    //    small4.classList.remove("Veillez entrer votre adresse");
+    //  small4.classList.add("Adresse valide");
     return true;
   } else {
     small4.innerHTML = "Veillez entrer votre adresse";
-    small4.classList.remove("Adresse valide");
-    small4.classList.add("Veillez entrer votre adresse");
+    //  small4.classList.remove("Adresse valide");
+    //    small4.classList.add("Veillez entrer votre adresse");
     return false;
   }
 };
+
+// Boutons select et Recupération valeurs formulaire dans le localStorage
+const btnSendForm = document.querySelector("#btnConfirm");
+console.log(btnConfirm);
+
+btnSendForm.addEventListener("click", (e) => {
+  e.preventDefault();
+  localStorage.setItem("firstname", document.querySelector("#firstname").value);
+  console.log(document.querySelector("#firstname").value);
+});
+
+

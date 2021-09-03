@@ -112,7 +112,7 @@ h2 {
 }
 
 #table {
-  width: 70%;
+  width: 80%;
   height: auto;
   margin: 5% auto 5%;
 }
@@ -147,7 +147,7 @@ th {
 }
 
 .form-group {
-  width: 40%;
+  width: 60%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -200,7 +200,7 @@ input::placeholder {
   color: white;
 }
 
-.deleteItem {
+#deleteItem {
   margin: auto 5% auto;
   color: rgba(177, 5, 5, 0.877);
   border: none;

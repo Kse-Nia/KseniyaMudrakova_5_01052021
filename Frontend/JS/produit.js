@@ -40,11 +40,11 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
       const camera = getCamera();
 
       camera.push({
-        id: data._id,
+        idSelect: data._id,
         imageUrl: data.imageUrl,
         name: data.name,
         price: data.price / 100,
-        quantity: 1, 
+        quantity: 1,
       });
       localStorage.setItem("camera", JSON.stringify(camera));
     }
@@ -71,4 +71,4 @@ function cartNumber() {
   let productNumber = localStorage.getItem;
 }
 
-console.log('camera');
+console.log("camera");
