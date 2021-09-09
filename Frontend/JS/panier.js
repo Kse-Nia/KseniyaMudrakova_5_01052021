@@ -59,8 +59,6 @@ if (recup === null) {
 
 let btnDeleteItem = document.querySelectorAll("#deleteItem");
 
-console.log(btnDeleteItem);
-
 for (let i = 0; i < btnDeleteItem.length; i++) {
   btnDeleteItem[i].addEventListener("click", (event) => {
     event.preventDefault(); // Pour éviter rechargement auto de la page
@@ -121,13 +119,9 @@ const validFirstName = function (inputfirstname) {
   let small1 = inputfirstname.nextElementSibling;
   if (testFirstName) {
     small1.innerHTML = "Prénom valide";
-    //    small1.classList.remove("Erreur");
-    //  small1.classList.add("Prénom valide");
     return true;
   } else {
     small1.innerHTML = "Prénom non valide";
-    //   small1.classList.remove("Success");
-    // small1.classList.add("Prénom valide");
     return false;
   }
 };
@@ -147,13 +141,9 @@ const validName = function (inputName) {
   let small2 = inputName.nextElementSibling;
   if (testName) {
     small2.innerHTML = "Nom valide";
-    //   small2.classList.remove("Erreur");
-    // small2.classList.add("Success");
     return true;
   } else {
     small2.innerHTML = "Nom non valide";
-    //  small2.classList.remove("Success");
-    // small2.classList.add("Erreur");
     return false;
   }
 };
@@ -173,13 +163,9 @@ const validEmail = function (inputEmail) {
   let small = inputEmail.nextElementSibling;
   if (testEmail) {
     small.innerHTML = "Mail valide";
-    // small.classList.remove("Erreur - veillez entrer une adresse mail valide");
-    // small.classList.add("Success");
     return true;
   } else {
     small.innerHTML = "Erreur - veillez entrer une adresse mail valide";
-    //    small.classList.remove("Mail valide");
-    //  small.classList.add("Erreur - veillez entrer une adresse mail valide");
     return false;
   }
 };
@@ -196,13 +182,9 @@ const validCity = function (inputCity) {
   let small3 = inputCity.nextElementSibling;
   if (testCity) {
     small3.innerHTML = "Ville valide";
-    //   small3.classList.remove("Erreur");
-    //  small3.classList.add("Success");
     return true;
   } else {
     small3.innerHTML = "Ville non valide";
-    //    small3.classList.remove("Success");
-    //  small3.classList.add("Erreur");
     return false;
   }
 };
@@ -219,20 +201,15 @@ const validAddress = function (inputAddress) {
   let small4 = inputAddress.nextElementSibling;
   if (testAddress) {
     small4.innerHTML = "Adresse valide";
-    //    small4.classList.remove("Veillez entrer votre adresse");
-    //  small4.classList.add("Adresse valide");
     return true;
   } else {
     small4.innerHTML = "Veillez entrer votre adresse";
-    //  small4.classList.remove("Adresse valide");
-    //    small4.classList.add("Veillez entrer votre adresse");
     return false;
   }
 };
 
 // Boutons select et Recupération valeurs formulaire dans le localStorage
 const btnSendForm = document.querySelector("#btnConfirm");
-console.log(btnConfirm);
 
 btnSendForm.addEventListener("click", (e) => {
   e.preventDefault();
@@ -240,4 +217,59 @@ btnSendForm.addEventListener("click", (e) => {
   console.log(document.querySelector("#firstname").value);
 });
 
+// -------------------------------------------- Partie POST - validation de la commande  --------------------------------------------//
 
+const firstname = document.getElementById('firstname').value
+const lastname = document.getElementById('lastname').value
+const adress = document.getElementById('address').value
+const city = document.getElementById('city').value
+const email = document.getElementById('email').value
+
+const productsCart = Object.values(recup).map((recup) => {
+  return recup._id;
+});
+
+const myOrder = {
+  contact: {
+    firstName: firstname,
+    lastName: lastname,
+    address: adress + " " + city,
+    city: city,
+    email: email,
+  },
+  products: recup,
+};
+
+const postData = () => {
+  fetch("http://localhost:3000/api/cameras/order", myInit)
+    .then((response) => response.JSON())
+    .then((json) => {
+      let order = json.orderId;
+      localStorage.setItem("order", JSON.stringify(order));
+      window.location.href = "./confirmation.html";
+    });
+};
+
+
+/* brouillon envoie en POST
+
+
+ fetch("https://teddies-api.herokuapp.com/api/cameras/order", {
+  method: "POST",
+  headers: {
+      "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ contact, products }),
+})
+  .then((response) => response.json())
+  .then((data) => {
+      localStorage.setItem("order", JSON.stringify(data));
+      document.location.href = "order.html";
+  })
+  .catch((erreur) => console.log("erreur : " + erreur));
+} else {
+alert(
+  "Veuillez correctement renseigner l'entièreté du formulaire pour valider votre commande."
+);
+}
+*/
