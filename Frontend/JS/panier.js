@@ -219,57 +219,51 @@ btnSendForm.addEventListener("click", (e) => {
 
 // -------------------------------------------- Partie POST - validation de la commande  --------------------------------------------//
 
-const firstname = document.getElementById('firstname').value
-const lastname = document.getElementById('lastname').value
-const adress = document.getElementById('address').value
-const city = document.getElementById('city').value
-const email = document.getElementById('email').value
+const orderValidationBtn = document.getElementById("btnConfirm");
 
-const productsCart = Object.values(recup).map((recup) => {
-  return recup._id;
-});
+orderValidationBtn.addEventListener("click", (event) => {
+  // récupération données formulaire
 
-const myOrder = {
-  contact: {
-    firstName: firstname,
-    lastName: lastname,
-    address: adress + " " + city,
-    city: city,
-    email: email,
-  },
-  products: recup,
-};
+  const contact = {
+    firstname: document.getElementById("firstname").value,
+    lastname: document.getElementById("lastname").value,
+    email: document.getElementById("email").value,
+    address: document.getElementById("address").value,
+    city: document.getElementById("city").value,
+  };
 
-const postData = () => {
-  fetch("http://localhost:3000/api/cameras/order", myInit)
-    .then((response) => response.JSON())
-    .then((json) => {
-      let order = json.orderId;
-      localStorage.setItem("order", JSON.stringify(order));
-      window.location.href = "./confirmation.html";
-    });
-};
+  console.log(contact);
 
+  const sendCommand = {
+    recup,
+    contact,
+  };
 
-/* brouillon envoie en POST
+  // Envoie vers le serveur
 
-
- fetch("https://teddies-api.herokuapp.com/api/cameras/order", {
-  method: "POST",
-  headers: {
+  const promiseCommand = fetch("http://localhost:3000/api/cameras/order", {
+    method: "POST",
+    body: JSON.stringify(sendCommand),
+    headers: {
       "Content-Type": "application/json",
-  },
-  body: JSON.stringify({ contact, products }),
-})
-  .then((response) => response.json())
-  .then((data) => {
+    },
+    body: JSON.stringify({ contact, recup }),
+  })
+    .then((response) => Response.JSON())
+    .then((data) => {
       localStorage.setItem("order", JSON.stringify(data));
       document.location.href = "order.html";
-  })
-  .catch((erreur) => console.log("erreur : " + erreur));
-} else {
-alert(
-  "Veuillez correctement renseigner l'entièreté du formulaire pour valider votre commande."
-);
-}
-*/
+    })
+    .catch((erreur) => console.log("erreur:" + erreur));
+  // Verification formulaire
+
+  const date = orderDays + "-" + month + "-" + todayDate.getFullYear();
+  const orderHours = hours + ":" + minutes;
+  const fullDate = { date, hours };
+  const informationOrder = JSON.parse(localStorage.getItem("date")) || [];
+  informationOrder.push(fullDate);
+  localStorage.setItem("date", JSON.stringify(informationOrder));
+});
+
+console.log("promiseCommand");
+console.log(promiseCommand);
