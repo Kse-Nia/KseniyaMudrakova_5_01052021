@@ -209,13 +209,18 @@ const validAddress = function (inputAddress) {
 };
 
 // Boutons select et Recupération valeurs formulaire dans le localStorage
+/*
 const btnSendForm = document.querySelector("#btnConfirm");
 
 btnSendForm.addEventListener("click", (e) => {
   e.preventDefault();
   localStorage.setItem("firstname", document.querySelector("#firstname").value);
-  console.log(document.querySelector("#firstname").value);
+  localStorage.setItem("lastname", document.querySelector("#lastname").value);
+  localStorage.setItem("address", document.querySelector("#address").value);
+  localStorage.setItem("city", document.querySelector("#city").value);
+  localStorage.setItem("email", document.querySelector("#email").value);
 });
+*/
 
 // -------------------------------------------- Partie POST - validation de la commande  --------------------------------------------//
 
@@ -232,38 +237,31 @@ orderValidationBtn.addEventListener("click", (event) => {
     city: document.getElementById("city").value,
   };
 
-  console.log(contact);
-
-  const sendCommand = {
+  const sendOrder = {
     recup,
     contact,
   };
 
   // Envoie vers le serveur
 
-  const promiseCommand = fetch("http://localhost:3000/api/cameras/order", {
-    method: "POST",
-    body: JSON.stringify(sendCommand),
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ contact, recup }),
-  })
-    .then((response) => Response.JSON())
-    .then((data) => {
-      localStorage.setItem("order", JSON.stringify(data));
-      document.location.href = "order.html";
-    })
-    .catch((erreur) => console.log("erreur:" + erreur));
-  // Verification formulaire
+  async () => {
+    const promiseOrder = await fetch(
+      "http://localhost:3000/api/cameras/order",
+      {
+        method: "POST",
+        body: JSON.stringify(sendOrder),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => response.JSON())
+      .then((data) => {
+        localStorage.setItem("order", JSON.stringify(data));
+        window.location.href = `${window.location.origin}/order.html?orderId=${json.orderId}`
+      })
+      .catch((erreur) => console.log("erreur:" + erreur));
+  };
 
-  const date = orderDays + "-" + month + "-" + todayDate.getFullYear();
-  const orderHours = hours + ":" + minutes;
-  const fullDate = { date, hours };
-  const informationOrder = JSON.parse(localStorage.getItem("date")) || [];
-  informationOrder.push(fullDate);
-  localStorage.setItem("date", JSON.stringify(informationOrder));
 });
 
-console.log("promiseCommand");
-console.log(promiseCommand);
