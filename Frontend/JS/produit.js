@@ -64,11 +64,3 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
       }
     }
   });
-
-// Nombre
-
-function cartNumber() {
-  let productNumber = localStorage.getItem;
-}
-
-console.log("camera");

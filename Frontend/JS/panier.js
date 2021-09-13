@@ -243,25 +243,16 @@ orderValidationBtn.addEventListener("click", (event) => {
   };
 
   // Envoie vers le serveur
-
-  async () => {
-    const promiseOrder = await fetch(
-      "http://localhost:3000/api/cameras/order",
-      {
-        method: "POST",
-        body: JSON.stringify(sendOrder),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((response) => response.JSON())
-      .then((data) => {
-        localStorage.setItem("order", JSON.stringify(data));
-        window.location.href = `${window.location.origin}/order.html?orderId=${json.orderId}`
-      })
-      .catch((erreur) => console.log("erreur:" + erreur));
-  };
-
+  fetch("http://localhost:3000/api/cameras/order", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(sendOrder),
+  })
+    .then((response) => response.JSON())
+    .then((data) => {
+      localStorage.setItem("sendOrder", JSON.stringify(data));
+      document.location.href = "order.html";
+    });
 });
-
