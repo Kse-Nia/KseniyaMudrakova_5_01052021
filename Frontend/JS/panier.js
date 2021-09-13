@@ -237,22 +237,40 @@ orderValidationBtn.addEventListener("click", (event) => {
     city: document.getElementById("city").value,
   };
 
+// Partie date
+
+const orderDate = new Date();
+let today = orderDate.getDate();
+let month = orderDate.getMonth();
+let hours = orderDate.getHours();
+let minutes = orderDate.getMinutes();
+let year = orderDate.getFullYear();
+
+console.log(today)
+
+const dateFinal = today + "/" + month + "/" + year;
+
+// 
   const sendOrder = {
     recup,
     contact,
+    dateFinal,
   };
 
-  // Envoie vers le serveur
-  fetch("http://localhost:3000/api/cameras/order", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(sendOrder),
-  })
-    .then((response) => response.JSON())
-    .then((data) => {
-      localStorage.setItem("sendOrder", JSON.stringify(data));
-      document.location.href = "order.html";
-    });
+  console.log(contact);
+  console.log(sendOrder);
 });
+
+ // Envoie vers le serveur
+ fetch("http://localhost:3000/api/cameras/order", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(sendOrder),
+})
+  .then((response) => response.JSON())
+  .then((data) => {
+    localStorage.setItem("sendOrder", JSON.stringify(data));
+    document.location.href = "order.html";
+  });
