@@ -1,10 +1,14 @@
 function orderConfirmation() {
   let data = JSON.parse(localStorage.getItem("sendOrder"));
-  let orderContainer = document.getElementById("orderContainer");
+  let orderContainer = document.getElementsByClassName("produitContent")[0];
   orderContainer.innerHTML += `
 <div>
-    <p>Votre commande N° ${sendOrder.orderId} vient d'être prise en compte.</p>
-    <p>Merci ${sendOrder.contact.firstName} d'avoir effectué votre achat sur notre site.</p>
+    <p>Votre commande N° ${data.orderId} vient d'être prise en compte.</p>
+    <p>Merci ${data.contact.firstName} d'avoir effectué votre achat sur notre site.</p>
 </div>
 `;
+//orderContainer.textContent = "Test commande";
+
+console.log(orderContainer);
 }
+orderConfirmation();
