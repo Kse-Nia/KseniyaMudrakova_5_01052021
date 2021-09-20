@@ -63,11 +63,6 @@ for (let i = 0; i < btnDeleteItem.length; i++) {
   btnDeleteItem[i].addEventListener("click", (event) => {
     event.preventDefault(); // Pour éviter rechargement auto de la page
 
-    let idDelate = recup[i].idSelect;
-    console.log(i);
-    console.log("idDelate");
-    console.log(idDelate);
-
     // recup = recup.filter((element) => element.idSelect !== idDelate);
     recup.splice(i, 1);
     localStorage.setItem("camera", JSON.stringify(recup)); // Variable vers le localStorage
@@ -85,7 +80,6 @@ let clearCart = document.getElementById("btnDeleteCart");
 clearCart.addEventListener("click", () => {
   let questionCart = confirm("Voulez-vous vraiment supprimer le panier?");
   if (questionCart) {
-    console.log(questionCart);
     localStorage.clear();
     location.reload(true);
   } else {
@@ -208,27 +202,13 @@ const validAddress = function (inputAddress) {
   }
 };
 
-// Boutons select et Recupération valeurs formulaire dans le localStorage
-/*
-const btnSendForm = document.querySelector("#btnConfirm");
-
-btnSendForm.addEventListener("click", (e) => {
-  e.preventDefault();
-  localStorage.setItem("firstname", document.querySelector("#firstname").value);
-  localStorage.setItem("lastname", document.querySelector("#lastname").value);
-  localStorage.setItem("address", document.querySelector("#address").value);
-  localStorage.setItem("city", document.querySelector("#city").value);
-  localStorage.setItem("email", document.querySelector("#email").value);
-});
-*/
-
 // -------------------------------------------- Partie POST - validation de la commande  --------------------------------------------//
 
 const orderValidationBtn = document.getElementById("btnConfirm");
 
 orderValidationBtn.addEventListener("click", (event) => {
-  // récupération données formulaire
 
+  // récupération données formulaire
   const contact = {
     firstName: document.getElementById("firstname").value,
     lastName: document.getElementById("lastname").value,
@@ -237,23 +217,11 @@ orderValidationBtn.addEventListener("click", (event) => {
     city: document.getElementById("city").value,
   };
 
-  // Partie date
-  /* 
-const orderDate = new Date();
-let today = orderDate.getDate();
-let month = orderDate.getMonth();
-let hours = orderDate.getHours();
-let minutes = orderDate.getMinutes();
-let year = orderDate.getFullYear();
-const dateFinal = today + "/" + month + "/" + year;
-
-console.log(today)
-*/
-
-  //
-
   let products = [];
-  products.push("5be1ed3f1c9d44000030b061");
+
+  for (i = 0; i < recup.length; i++) {
+    products.push(recup[i].idSelect);
+  };
 
   const sendOrder = {
     contact,
@@ -262,15 +230,16 @@ console.log(today)
 
   // Envoie vers le serveur
   fetch("http://localhost:3000/api/cameras/order", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(sendOrder),
-  })
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(sendOrder),
+    })
     .then((response) => response.json())
     .then((data) => {
       localStorage.setItem("sendOrder", JSON.stringify(data));
       document.location.href = "order.html";
+      localStorage.removeItem("camera");
     });
 });

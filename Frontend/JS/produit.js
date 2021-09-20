@@ -8,7 +8,6 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
   .then((response) => response.json())
   //
   .then((data) => {
-    console.log(data);
 
     docHtml.innerHTML += `
     <div class="card  text-dark" style="background-color:#f0f1ff;">
