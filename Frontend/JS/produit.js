@@ -10,7 +10,7 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
   .then((data) => {
 
     docHtml.innerHTML += `
-    <div class="card  text-dark" style="background-color:#f0f1ff;">
+    <div class="card  text-dark flex justify-content-center">
     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
     <img src=${
       data.imageUrl
