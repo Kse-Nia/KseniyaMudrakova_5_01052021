@@ -9,83 +9,96 @@ let confirmCart = document.getElementById("btnConfirm");
 
 // -------------------------------------------- Injection code HTML Panier -------------------------------------------- //
 
-if (recup === null) {
-  let emptyCartText = document.createTextNode("Votre panier est vide");
-  affichagePanier.appendChild(emptyCartText);
-} else {
-  affichagePanier.innerHTML += `
-<tr>
-    <th class="produit">Produit</th>
-    <th>Nom</th>
-    <th>Quantité</th>
-    <th>Prix</th>
-</tr>`;
+function displayCartItems() {
+  if (recup === null) {
+    let emptyCartText = document.createTextNode("Votre panier est vide");
+    affichagePanier.appendChild(emptyCartText);
+  } else {
+    affichagePanier.innerHTML += `
+  <tr>
+      <th class="produit">Produit</th>
+      <th>Nom</th>
+      <th>Quantité</th>
+      <th>Prix</th>
+  </tr>`;
 
-  let resultTotal = 0;
-  let totalCommand = 0;
+    let resultTotal = 0;
+    let totalCommand = 0;
 
-  for (let i = 0; i < recup.length; i++) {
-    resultTotal = recup[i].price * recup[i].quantity;
-    totalCommand = totalCommand + resultTotal;
+    for (let i = 0; i < recup.length; i++) {
+      resultTotal = recup[i].price * recup[i].quantity;
+      totalCommand = totalCommand + resultTotal;
 
-    if (recup === null) {
-      affichagePanier.innerHTML += `
-    <tr>
-        <td>Votre panier est vide</td>
-    </tr>
-    `;
-    } else {
-      affichagePanier.innerHTML += `
-    <tr class="text-center">
-    <td><img src=${recup[i].imageUrl} class="card-img-cart img-fluid" alt="un appareil photo"></td>
-        <td>${recup[i].name}</td>
-        <td>${recup[i].quantity}</td>
-        <td>${recup[i].price} €</td>
-        <td><button id="deleteItem" class="m-2 rounded-start"><i class="fas fa-trash-alt"></i></button></td>
-        </tr>
-        `;
+      if (recup === null) {
+        affichagePanier.innerHTML += `
+      <tr>
+          <td>Votre panier est vide</td>
+      </tr>
+      `;
+      } else {
+        affichagePanier.innerHTML += `
+      <tr class="text-center">
+      <td><img src=${recup[i].imageUrl} class="card-img-cart img-fluid" alt="un appareil photo"></td>
+          <td>${recup[i].name}</td>
+          <td>${recup[i].quantity}</td>
+          <td>${recup[i].price} €</td>
+          <td><button id="deleteItem" class="m-2 rounded-start"><i class="fas fa-trash-alt"></i></button></td>
+          </tr>
+          `;
+      }
     }
+
+    let affichageTotalPanier = document.getElementById("tableTotalPanier");
+    affichageTotalPanier.innerHTML += `
+  <tr>
+      <th  class="p-2">Total de la commande: </th>
+      <td class="p-2">${totalCommand} €</td>
+  </tr>
+  `;
   }
-  let affichageTotalPanier = document.getElementById("tableTotalPanier");
-  affichageTotalPanier.innerHTML += `
-<tr>
-    <th  class="p-2">Total de la commande: </th>
-    <td class="p-2">${totalCommand} €</td>
-</tr>
-`;
 }
+
+displayCartItems();
 
 // -------------------------------------------- Supprimer un seul article du panier --------------------------------------------//
 
-let btnDeleteItem = document.querySelectorAll("#deleteItem");
+function delateCartItem() {
+  let btnDeleteItem = document.querySelectorAll("#deleteItem");
 
-for (let i = 0; i < btnDeleteItem.length; i++) {
-  btnDeleteItem[i].addEventListener("click", (event) => {
-    event.preventDefault(); // Pour éviter rechargement auto de la page
+  for (let i = 0; i < btnDeleteItem.length; i++) {
+    btnDeleteItem[i].addEventListener("click", (event) => {
+      event.preventDefault(); // Pour éviter rechargement auto de la page
 
-    // recup = recup.filter((element) => element.idSelect !== idDelate);
-    recup.splice(i, 1);
-    localStorage.setItem("camera", JSON.stringify(recup)); // Variable vers le localStorage
+      // recup = recup.filter((element) => element.idSelect !== idDelate);
+      recup.splice(i, 1);
+      localStorage.setItem("camera", JSON.stringify(recup)); // Variable vers le localStorage
 
-    // Rechargement de la page + alerte
+      // Rechargement de la page + alerte
 
-    alert("Produit supprimé du panier");
-    window.location.href = "panier.html";
-  });
-}
+      alert("Produit supprimé du panier");
+      window.location.href = "panier.html";
+    });
+  }
+};
+
+delateCartItem();
 
 // -------------------------------------------- Supprimer tout le panier --------------------------------------------
-let clearCart = document.getElementById("btnDeleteCart");
 
-clearCart.addEventListener("click", () => {
-  let questionCart = confirm("Voulez-vous vraiment supprimer le panier?");
-  if (questionCart) {
-    localStorage.clear();
-    location.reload(true);
-  } else {
-    //false
-  }
-});
+function removeCart() {
+  let clearCart = document.getElementById("btnDeleteCart");
+
+  clearCart.addEventListener("click", () => {
+    let questionCart = confirm("Voulez-vous vraiment supprimer le panier?");
+    if (questionCart) {
+      localStorage.clear();
+      location.reload(true);
+    } else {
+      //false
+    }
+  });
+};
+removeCart();
 
 // ***** Affichage du formulaire ou non ***** //
 
