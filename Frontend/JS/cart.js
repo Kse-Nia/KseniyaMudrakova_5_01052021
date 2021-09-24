@@ -3,8 +3,6 @@
 let recup = JSON.parse(localStorage.getItem("camera"));
 let affichagePanier = document.getElementById("table");
 let containerPanier = document.getElementById("containerCart");
-
-let delateCart = document.getElementById("btnDelate");
 let confirmCart = document.getElementById("btnConfirm");
 
 // -------------------------------------------- Injection code HTML Panier -------------------------------------------- //
@@ -62,14 +60,13 @@ displayCartItems();
 
 // -------------------------------------------- Supprimer un seul article du panier --------------------------------------------//
 
-function delateCartItem() {
+function deleteCartItem() {
   let btnDeleteItem = document.querySelectorAll("#deleteItem");
 
   for (let i = 0; i < btnDeleteItem.length; i++) {
     btnDeleteItem[i].addEventListener("click", (event) => {
       event.preventDefault(); // Pour éviter rechargement auto de la page
 
-      // recup = recup.filter((element) => element.idSelect !== idDelate);
       recup.splice(i, 1);
       localStorage.setItem("camera", JSON.stringify(recup)); // Variable vers le localStorage
 
@@ -81,7 +78,7 @@ function delateCartItem() {
   }
 };
 
-delateCartItem();
+deleteCartItem();
 
 // -------------------------------------------- Supprimer tout le panier --------------------------------------------
 
